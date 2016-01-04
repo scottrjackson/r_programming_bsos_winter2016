@@ -5,6 +5,8 @@ date: 2016-01-04
 output: ioslides_presentation
 ---
 
+# New exciting slide
+
 # Outline
 
 ## What are we doing today?
