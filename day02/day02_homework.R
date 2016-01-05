@@ -2,6 +2,8 @@
 # Use comments where you're having trouble or questions
 
 # 1. Read your data set into R
+# read.table (and varieties)
+# read.spss (from "foreign" package)
 
 
 # 2. Peek at the top few rows
@@ -11,7 +13,7 @@
 
 
 # 4. How many rows does your data have?
-
+# nrow
 
 # 5. Get a summary for every column
 

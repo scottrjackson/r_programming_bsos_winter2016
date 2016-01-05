@@ -7,7 +7,7 @@
 # - data frames
 
 # calculator
-2 + 2 
+2 + 2
 2 * 43
 23/5
 2^3
@@ -24,8 +24,8 @@ objects() # display objects in workspace
 ls()      # same as objects()
 
 # workspace
-# rm("x")
-# rm(list = ls())
+rm("x")
+rm(list = ls()) # remove everything
 
 # help
 # ?
@@ -35,13 +35,24 @@ ls()      # same as objects()
 
 # packages
 ?install.packages
-#install.packages("dplyr") # install dplyr
+# install.packages("dplyr") # install dplyr
 library(dplyr) # loads package
 require(dplyr) # doesn't throw error inside a function
+?dplyr
+?t.test
+
+# choosing repos
+#install.packages("dplyr", repos = "http://lib.stat.cmu.edu/R/CRAN/")
+#install.packages(pkgs = "dplyr", repos = "http://lib.stat.cmu.edu/R/CRAN/") # same as previous 
+#install.packages(dplyr)
+
+packages.I.need <- c("dplyr", "ggplot2", "lme4")
+
+# install.packages(packages.I.need)
 
 # saving workspaces -- not (usually) recommended!
 # save()
-save(x, file = "x.RData")
+save(x, file = "x.RData") # saving a particular object
 rm(x)
 ls()
 load("x.RData")
@@ -53,8 +64,8 @@ save.image("myworkspace.RData")
 
 # quitting
 # q()
-q("yes") # quit and save workspace as .RData
-q("no")  # what I always do
+# q("yes") # quit and save workspace as .RData
+# q("no")  # what I always do
 
 # working directories
 getwd()
@@ -75,7 +86,9 @@ head(x = sleep, n = 10)
 head(sleep, 10)
 head(n = 10, x = sleep)
 head(10, sleep)
+head(n = 10, sleep)
 length(sleep)
+nrow(sleep)
 
 # function excursion #2: generics
 ?summary
@@ -84,6 +97,10 @@ length(sleep)
 summary <- 10
 summary        # can assign object names that already exist!
 summary(sleep) 
+summary <- function(x) { print("haha, fooled you!") }
+base::summary(sleep) 
+summary(sleep) 
+rm("summary")
 
 # package excursion #2: package conflicts
 # name conflicts can happen
@@ -99,7 +116,7 @@ summary(sleep)
 
 # making vectors
 # c
-c(1, 2, 3, 4)
+x <- c(1, 2, 3, 4.2)
 c(1, 3, 4, 2)  # ORDER MATTERS
 
 c(1, "pie") # coersion happens
@@ -120,6 +137,7 @@ min(yz)
 max(yz)
 
 x <- 1:100  # : is shortcut for sequence
+seq(2, 20, 3)
 
 # matrix: two-dimensional vector
 ?matrix
@@ -148,6 +166,7 @@ yz
 yz[1]
 yz[4]
 yz[c(4, 3)]
+yz[4, 3] # doesn't work
 
 sleep[ , ] # sleep[ROWS, COLUMNS]
 
@@ -160,6 +179,18 @@ sleep[1:5, "extra"]
 sleep[1:5, c("extra", "ID")]
 
 colnames(sleep)[3]
+
+sleep1 <- sleep
+
+colnames(sleep1)[2] <- "treatment"
+
+colnames(sleep1)["treatment"]
+
+x <- colnames(sleep1)
+names(x) <- c("a", "b", "c")
+
+x[2]
+x["b"]
 
 mynames <- colnames(sleep)
 mynames[3]
@@ -186,4 +217,6 @@ sleep[["extra"]]
 mydf <- data.frame(col1 = 1:10, col2 = 3, col3 = c("hello", "goodbye"))
 mydf
 
+# packrat
 
+# logicals (tomorrow)
