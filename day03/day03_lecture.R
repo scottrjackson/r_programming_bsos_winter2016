@@ -5,11 +5,19 @@
 
 #### Assignment
 
+mydata <- read.csv("scottdata/CognitionPaperFinalData.csv")
+
+myvector <- c("one", "two", "three")
+
 #  <-  vs.  =
+myvector = c("one", "two", "three")
+
 
 #### Using functions
+# functionname(arg1, arg2, ...)
 
 #### Reading help files
+?read.csv
 
 #### Basic object types
 # Vectors
@@ -17,9 +25,48 @@
 # Lists
 # Data frames
 
+this.is.a.vector <- c(1, 2, 3)
+this.is.another.vector <- c(1, 2, "pie")
+
+# matrix is 2-D vector
+# arrays are multi-dimensional
+
+# lists are "grab-bag"
+this.is.a.list <- list(1, 2, "pie")
+
+x <- matrix(1:9, nrow = 3)
+this.is.a.list <- list(1, 2, "pie", x)
+
+class(x)
+class(1)
+
+this.is.a.list[4]
+class(this.is.a.list[4])
+
+this.is.a.list[[4]]
+class(this.is.a.list[[4]])
+
+# data frames are great!
+# data frames are special lists
+class(sleep)
+length(sleep)
+nrow(sleep)
+
 #### Subsetting
+myvector[2]
+sleep[2] # this is not a vector (contents + structure)
+sleep[[2]] # this is a vector (contents)
+sleep[ , ] # two dimensions: ROWS, COLUMNS
+# sleep[ , , , ] # four dimensions (won't work, because data frames are 2-D)
+sleep[3, 1] # third row, first column
+sleep[1, ] # first row, all columns
+sleep[, 1] # first column, all rows
+sleep[, "extra"] # referring by name is good
+sleep[c(1, 2, 3), ]
+sleep[, c("extra", "ID", "group")]
 
 #### Reading and writing files
+
 
 ##############
 # Data types
@@ -58,7 +105,13 @@
 # - factors have *levels*: categories
 # - `stringsAsFactors` : option for how to read in character vectors
 # - = FALSE if you don't want to read in characters as factors
-
+scott <- read.csv("scottdata/CognitionPaperFinalData.csv")
+summary(scott$Merged)
+levels(scott$Merged)
+levels(scott$Merged) <- c("Unmerged", "Merged") # only changing the labels
+levels(scott$Merged)
+levels(scott$Merged) <- c("Merged", "Unmerged") # only changing the labels
+scott$Merged <- factor(scott$Merged, levels = c("Unmerged", "Merged"))
 
 ## Logicals
 # - TRUE and FALSE
@@ -76,7 +129,7 @@
 # - `!`  is NOT
 # - `&&` and `||`  for more specific programming sitauations
 
- 
+
 ## NA and NULL (and others)
 # - `NA` mean "missing value" or "missing data"
 # - `NULL` means "nothing", the absence of something

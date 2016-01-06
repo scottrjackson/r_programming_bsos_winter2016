@@ -7,7 +7,19 @@
 
 scott <- read.csv("scottdata/CognitionPaperFinalData.csv")
 # equivalent:
-scott <- read.table("scottdata/CognitionPaperFinalData.csv", header = TRUE, sep = ",")
+scott <- read.table("scottdata/CognitionPaperFinalData.csv", 
+                    header = TRUE, sep = ",")
+# library(foreign)
+# read.dta()  # for Stata .dta files, only for Stata < 13
+# mydata <- as.data.frame(read.dta("myfile.dta"))
+# library(readstata13)
+# read.dta13()
+# library(memisc) # for other Stata
+# read.spss() # for .sav
+
+# tip: missing data
+# example: "999" means "missing"
+# read.csv("myfile.csv", na.strings = c(999, "n/a", "N/A"))
 
 # 2. Peek at the top few rows
 head(scott)
@@ -25,6 +37,8 @@ summary(scott)
 
 # 6. Get a summary for one column
 summary(scott$WithinMinPairs)
+summary(scott[ , "WithinMinPairs"])
+summary(scott[ , 9])
 
 # 7. Are any of the columns giving you unexpected values?
 #    - missing values? (NA)
@@ -40,7 +54,7 @@ colnames(scott)[c(2, 6, 9)] # another way to pull out a few column names
 #    - do this in at least TWO different ways
 scott.subset <- scott[, some.columns]
 scott.subset2 <- scott[, c("System", "Merged", "WithinMinPairs")]
-library(dplyr)
+library(dplyr) # for the "select" function
 scott.subset3 <- select(scott, System, Merged, WithinMinPairs)
 identical(scott.subset, scott.subset2) # identical results!
 identical(scott.subset, scott.subset3) # identical results!
