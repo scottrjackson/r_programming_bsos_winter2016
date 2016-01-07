@@ -29,6 +29,8 @@ Save your homework in a well-documented R Markdown document.  Email me the .Rmd 
 
 11. Reorder the levels of this new factor
 
+########################## Stop Here
+
 12. Aggregate (e.g., get mean/median/max/something) of some numerical variable, over one or more factors.  Try using both `dcast()` from the `reshape2` package, and `group_by()` plus `summarize()` from the `dplyr` package.
 
 13. Run TWO DIFFERENT simple analyses or statistical tests, such as linear regression (`lm()`), logistic regression (`glm()`), correlation test (`cor.test()`), t-test (`t.test()`), or non-parametric tests (e.g., `wilcox.test()`).  For each of these:

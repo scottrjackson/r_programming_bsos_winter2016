@@ -5,12 +5,49 @@ output: html_document
 
 1. Read in the (modified) database of phoneme pairs from Wedel, Kaplan, and Jackson (2013).  The relative path from the working directory of this project is: "scottdata/CognitionPaperModifiedData.csv"
 
+```{r}
+library(reshape2)
+mydata <- read.csv("../scottdata/CognitionPaperModifiedData.csv")
+```
+
 2. Read in the data using the WRONG function.  What does it look like?  Re-read with the right function for the rest of the practice exercises.
+
+```{r}
+mydata <- read.delim("../scottdata/CognitionPaperModifiedData.csv")
+head(mydata)
+mydata <- read.csv("../scottdata/CognitionPaperModifiedData.csv")
+```
 
 3. Change some (or all) of the column names.  Provide a table that links original column names with the current/new column names.
 
+```{r}
+mydata2 <- mydata
+(old.cols <- colnames(mydata2))
+colnames(mydata2)[c(1, 3)] <- c("Language", "Phonemes")
+(new.cols <- colnames(mydata2))
+(colname.correspondences <- data.frame(old.cols, new.cols))
+
+```
+
 4. Locate NAs.  Remove all rows containing NAs.
-   (Hint: try using functions `is.na()`, `complete.cases()`, and `anyNA()`)
+   (Hint: try using functions `is.na()`, `complete.cases()`, `no.omit()`, and/or `anyNA()`)
+
+```{r}
+summary(mydata)
+mydata.cc <- mydata[complete.cases(mydata), ]
+nrow(mydata)
+nrow(mydata.cc)
+summary(mydata.cc)
+
+missing <- is.na(mydata$AllMinPairs)
+mydata.cc2 <- mydata[!missing, ]
+
+mydata.cc3 <- na.omit(mydata)
+
+identical(mydata.cc, mydata.cc2)
+identical(mydata.cc2, data.frame(mydata.cc3))
+
+```
 
 5. Recode the "Corpus" variable in the following way:
 Am = American
@@ -23,15 +60,62 @@ RP = British
 Sl = Slovakian
 Sp = Spanish
 
+```{r}
+(old.langs <- levels(mydata$Corpus))
+(new.langs <- c("American", "Dutch", "French", "German", "Cantonese", "Korean", "British", "Slovakian", "Spanish"))
+(lang.table <- data.frame(old.langs, new.langs))
+levels(mydata$Corpus) <- new.langs
+```
+
 6. Create a "long" version of this data, where `WithinMinPairs` and `BetweenMinPairs` are all in one `MinPairs` variable, and there is a column called `MinPairType` that labels whether they are "within" or "between".
+
+```{r}
+mydata.long <- melt(mydata, measure.vars = c("WithinMinPairs", "BetweenMinPairs"), variable.name = "MinPairType", value.name = "MinPairs")
+```
 
 7. Log-transform this new `MinPairs` variable.
 
+```{r}
+mydata.long$MinPairs <- log(mydata.long$MinPairs)
+head(mydata.long)
+```
+
 8. Reshape the data back to "wide" format with `WithinMinPairs` and `BetweenMinPairs` (now log-transformed) are in different columns.
+
+```{r}
+mydata.wide <- dcast(mydata.long, ... ~ MinPairType, value.var = "MinPairs")
+head(mydata.wide)
+
+small <- data.frame(factor = c(rep("red", 10), rep("blue", 10)), numbers = rnorm(20))
+small
+```
 
 9. Create a new categorical variable that labels "low", "mid", and "high" values of the (log-transformed) `WithinMinPairs` variable.
 
+```{r}
+summary(mydata.wide$WithinMinPairs[!is.infinite(mydata.wide$WithinMinPairs)])
+summary(mydata.wide$WithinMinPairs[!is.infinite(mydata.wide$WithinMinPairs)])
+thresholds <- c(2.639, 5.074)
+thresholds <- as.numeric(quantile(mydata.wide$WithinMinPairs[!is.infinite(mydata.wide$WithinMinPairs)], na.rm = TRUE)[c(2, 4)])
+
+mydata.wide$Cat <- "high"
+mydata.wide$Cat[mydata.wide$WithinMinPairs <= thresholds[2]] <- "mid"
+mydata.wide$Cat[mydata.wide$WithinMinPairs <= thresholds[1]] <- "low"
+
+mydata.wide$Cat2 <- ifelse(mydata.wide$WithinMinPairs > thresholds[2], "high", ifelse(mydata.wide$WithinMinPairs <= thresholds[1], "low", "mid"))
+
+```
+
 10. Reorder the levels of this categorical variable.
+
+```{r}
+mydata.wide$Cat <- factor(mydata.wide$Cat)
+levels(mydata.wide$Cat)
+mydata.wide$Cat <- factor(mydata.wide$Cat, levels = c("low", "mid", "high"))
+levels(mydata.wide$Cat)
+xtabs(~ Cat + Cat2, mydata.wide)
+
+```
 
 11. Get the mean value of (the log-transformed) `WithinMinPairs` variable for each language in the `Corpus` factor.
 
