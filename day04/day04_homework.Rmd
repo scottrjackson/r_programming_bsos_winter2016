@@ -1,0 +1,38 @@
+---
+title: "Day 4 Homework"
+output: html_document
+---
+
+Save your homework in a well-documented R Markdown document.  Email me the .Rmd file (and the exact data file(s) you used, or a link to it). I should be able to "knit" your homework and reproduce your results.
+
+0. Read in your data from the data file(s) you provide me. If you have more than one data file that can/should be combined, use `rbind`, `cbind`, or `merge` to combine them.
+
+1. Change the column names of your data to something easier to work with.  If you like your column names, change them into something else reasonable, just for practice.
+
+2. List ALL the issues you can see where it looks like your data is being read in a weird way.  If your data looks perfect, find some way to mess it up :-)
+
+3. Pick one or two of the most egregious or problematic of the issues in #2 and fix them.  If you get stumped, write out steps ("pseudocode") for what you want to do.
+
+4. Check for NAs, and report where you see them (try to pinpoint where they are, not just "5 NAs in column seven".
+
+5. Decide what you think you should do about the NAs, and say why.  If you can, try to implement this decision.
+
+6. Remove any problematic rows and/or columns.  Say why you want to remove them.  If there aren't any problems, describe why you think there are no problems (what did you do to come to this conclusion -- include code!).
+
+7. Make both a "wide" and a "long" version of your data
+
+8. Transform a variable
+
+9. Re-code at least one factor.  Provide a table that shows the correspondence between old levels and new levels.
+
+10. Add a new factor, where the levels are conditional on the values of some other variable. E.g., a factor of "high", "medium", and "low" based on thresholds for another variable.
+
+11. Reorder the levels of this new factor
+
+12. Aggregate (e.g., get mean/median/max/something) of some numerical variable, over one or more factors.  Try using both `dcast()` from the `reshape2` package, and `group_by()` plus `summarize()` from the `dplyr` package.
+
+13. Run TWO DIFFERENT simple analyses or statistical tests, such as linear regression (`lm()`), logistic regression (`glm()`), correlation test (`cor.test()`), t-test (`t.test()`), or non-parametric tests (e.g., `wilcox.test()`).  For each of these:
+  - Describe why you are doing this analysis, i.e., what question is it answering?
+  - I won't judge you on statistical expertise!  (though I will make comments if I think I can be helpful)
+  - Report some key statistics from the analysis, using **inline** code
+  

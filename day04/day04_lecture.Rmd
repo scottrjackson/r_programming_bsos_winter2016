@@ -1,0 +1,359 @@
+---
+title: "Day 4 Lecture"
+output: html_document
+---
+
+# Today's agenda: lots!
+
+  - Notebooks
+  - Merging data
+  - Manipulating and transforming variables
+  - Reshaping data & "tidy" data
+  - Aggregation (e.g., cells means)
+  - "Tidy" data
+  - Complex objects
+
+# Notebooks vs. scripts
+Sweave: the original "reproducible document", mix of LaTeX and R
+
+R Markdown: one of the "cutting edge" formats, especially well-integrated into RStudio, that allows mixing of R code with text, document formatting, links, graphics, etc.
+
+The following is a code chunk, and when `knitr()` is run on this document, it will display both the code and the output.
+
+```{r}
+x <- rnorm(10000)
+hist(x)  # this is a histogram
+
+t.test(x)
+```
+
+You can also insert "inline" results, like the following:
+
+The mean of `x` is `r mean(x)`.
+
+Clicking on the little question mark in the RStudio GUI above this document will point you towards lots of helpful documentation on the details of Markdown and R Markdown documents.
+
+# Data manipulation
+
+## Combining data frame objects
+### `rbind()` and `cbind()`
+- rbind
+    - glues rows on top of each other
+    - expects same columns
+    - new and improved `rbind_all()` and `rbind_list()` in `dplyr` package
+  - cbind
+    - glues columns next to each other
+    - need to be the same length    
+```{r}
+sleep1 <- sleep[sleep$group == 1,  ]
+sleep2 <- sleep[sleep$group == 2,  ]
+sleep1
+sleep2
+sleep.reassembled <- rbind(sleep1, sleep2)
+sleep.reassembled
+
+# rbind_all
+library(dplyr)
+sleep2b <- sleep2
+sleep2b$new.column <- "other data"
+# rbind(sleep1, sleep2b) # doesn't work
+rbind_list(sleep1, sleep2b) # from dplyr package
+
+sleep.left <- sleep[, 1:2]
+sleep.left
+sleep.ID <- sleep[, 3]
+sleep.ID
+sleep.reassembled.2 <- cbind(sleep.left, sleep.ID)
+sleep.reassembled.2
+```
+
+### `merge()`
+```{r}
+subject.info <- data.frame(ID = 3:12, gender = c("male", "male", "female", "female", "female", "female", "male", "female", "male", "male"))
+subject.info
+
+sleep.merged <- merge(sleep, subject.info)
+sleep
+sleep.merged
+nrow(sleep)
+nrow(sleep.merged)
+
+mysleep <- sleep
+mysleep$ID <- as.numeric(mysleep$ID)
+
+sleep.merged2 <- merge(mysleep, subject.info, all = TRUE)
+sleep.merged2
+
+```
+    - simplest: have ONE column in common, named the same thing (with the same values)
+    - can get MUCH more complex
+    - `nrow()` good check on what was gained/lost during a merge
+    
+## Creating new columns
+
+```{r}
+mysleep
+mysleep$Study <- "Study1"
+mysleep$noise <- rnorm(20)
+mysleep
+```
+
+## Simple column transformations
+
+```{r}
+mysleep <- sleep
+mysleep$extra2 <- mysleep$extra * 2
+mysleep$extra3 <- log(mysleep$extra + 10)
+mysleep
+mysleep$extra2 <- mysleep$extra2 - 4
+mysleep
+mysleep$extra2 <- NULL  # deletes the column
+mysleep
+mysleep$extra3 <- NA
+mysleep
+mysleep$three <- 3
+mysleep
+# mysleep$four <- c(1, 2, 3) # doesn't work
+mysleep$five <- c(1, 2, 3, 4) # does work (recycling)
+mysleep
+```
+
+## Dealing with factors (recap from Day 3)
+  - levels
+  - droplevels
+  - recoding
+  - reordering
+  - as.numeric vs. as.character
+  - stringsAsFactors = argument to `read.table()`
+
+### droplevels
+```{r}
+mysleep <- sleep
+summary(mysleep)
+levels(mysleep$ID)
+summary(mysleep$ID)
+
+mysleep.1 <- subset(mysleep, group == "1")
+mysleep.1 <- subset(mysleep.1, !ID == "3")
+# mysleep.1 <- subset(mysleep, group == 1 & !ID == 3)
+# mysleep.1 <- mysleep[mysleep$group == 1 & !mysleep$ID == 3, ]
+summary(mysleep.1$ID)
+summary(mysleep.1$group)
+
+mysleep.2 <- droplevels(mysleep.1)
+summary(mysleep.2$ID)
+summary(mysleep.2$group)
+```
+
+### recoding & reordering
+  - relevel, reorder, factor, levels
+```{r}
+mysleep <- sleep
+summary(mysleep)
+
+levels(mysleep$group)
+levels(mysleep$group) <- c("pre", "post")  # changes LABELS of the levels
+levels(mysleep$group)
+mysleep
+
+# levels(mysleep$group) <- c("post", "pre")  # DOESN'T CHANGE ORDER!
+# levels(mysleep$group)
+# mysleep
+
+mysleep$group <- relevel(mysleep$group, "post")  # changes order
+levels(mysleep$group)
+summary(mysleep)
+mysleep
+
+# avoid reorder() except for special cases
+
+mysleep$ID <- factor(mysleep$ID, levels = c("2", "3", "1", "5", "10", "7", "9", "8", "4", "6"))
+levels(mysleep$ID)
+mysleep
+
+mysleep$IDlevelnum <- as.numeric(mysleep$ID)
+mysleep
+
+```
+
+ - `reorder()`
+  - takes two vectors, a factor, and an "ordering" vector
+  - the "ordering" vector needs to be:
+    - the same length
+    - numeric values corrsponding to the order of levels in the factor
+
+## Reshaping data
+Use the `reshape2` package!!!
+
+```{r}
+# install.packages("reshape2")
+library(reshape2)
+```
+
+### "Long" vs. "wide" data
+```{r}
+mysleep <- sleep
+mysleep
+levels(mysleep$group) <- c("pre", "post")
+mysleep.cast <- dcast(mysleep, ID ~ group, value.var = "extra")
+mysleep.cast
+
+myff <- french_fries
+head(myff)
+# ?melt.data.frame
+myff.melt <- melt(myff, id.vars = 1:4)
+myff.melt <- melt(myff, id.vars = c("time", "treatment", "subject", "rep"))
+myff.melt <- melt(myff, measure.vars = 5:9)
+myff.melt <- melt(myff, measure.vars = c("buttery", "potato", "grassy", "rancid", "painty"))
+head(myff.melt)
+summary(myff.melt)
+
+myff.melt <- melt(myff, id.vars = 1:4, value.name = "rating", variable.name = "taste")
+head(myff.melt)
+summary(myff.melt)
+
+recastff <- dcast(myff.melt, time + treatment + subject + rep ~ taste, 
+                  value.var = "rating")
+summary(recastff)
+```
+
+## Aggregation (with the `reshape2` package)
+
+```{r}
+aggregateff <- dcast(myff.melt, treatment ~ taste, 
+                  value.var = "rating", fun.aggregate = mean, na.rm = TRUE)
+
+aggregateff
+
+aggregateff2 <- dcast(myff.melt, treatment + taste ~ ., 
+                  value.var = "rating", fun.aggregate = mean, na.rm = TRUE)
+colnames(aggregateff2)[3] <- "mean.rating"
+
+aggregateff2
+
+```
+
+## Aggregation (with the `dplyr` package)
+
+```{r}
+aggregateff3 <- group_by(myff.melt, treatment, taste) %>% summarize(mean.rating = mean(rating, na.rm = TRUE))
+
+aggregateff3
+identical(aggregateff2, aggregateff3)
+identical(aggregateff2, as.data.frame(aggregateff3))
+
+```
+
+## More `dplyr` tips
+
+### Forward-pipe operator (from `magrittr` package)
+["This is not a pipe"](https://en.wikipedia.org/wiki/The_Treachery_of_Images)
+
+  - `%>%` operator
+  - effect: pass the results of the thing on the left to the first argument of the thing on the right
+
+```{r}
+x <- 1:10
+mean(log(x + 2))
+
+(x + 2) %>% log() %>% mean()
+
+summarize(group_by(myff.melt, treatment, taste), mean.rating = mean(rating, na.rm = TRUE))
+
+group_by(myff.melt, treatment, taste) %>%
+  summarize(mean.rating = mean(rating, na.rm = TRUE))
+
+```
+
+### Subsetting with `dplyr`
+
+```{r}
+sleep[sleep$group == 1, ]
+filter(sleep, group == 1) # same results
+
+sleep[sleep$group == 1 & sleep$extra > 0.2, ]
+filter(sleep, group == 1, extra > 0.2) # same results
+
+sleep[, c("ID", "extra")]
+select(sleep, ID, extra)
+select(sleep, 3, 1)
+select(sleep, c(3, 1))
+# select(sleep, c("ID", "extra")) # doesn't work
+
+```
+
+### Alternative package for "tidying" data
+
+    - `tidyr`
+    - https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html
+    - http://vita.had.co.nz/papers/tidy-data.html
+
+# Data cleaning
+
+## A guideline template for data cleaning
+  1. Get the data to read in to R
+  2. Fix column names
+  3. Check all columns to make sure data is getting read in correctly
+  4. Check NAs, decide what to do with them
+  5. Remove excessive rows or other "defective" rows
+  6. Re-code factors as needed
+  
+### Reading data
+  - find a good `read.X()` function, where X = your type of data
+    - `read.table()` is the basic one
+    - `read.csv()` and `read.delim()` are convenience "wrappers" for `read.table()`, for CSV and tab-delimited files, respectively
+    - `read.spss()` and `read.dta()` from the `foreign` package for SPSS and Stata files
+  - for messier or more primitive kinds of files in weird formats, use `readLines()`, or `scan()` to pull in the data in a very raw format, which you will then need to format in R
+
+### Fix column names
+
+```{r}
+mysleep <- sleep
+oldnames <- colnames(mysleep)
+mycolnames <- c("extraSleep", "experimentalGroup", "subjectID")
+colnames(mysleep) <- mycolnames
+data.frame(oldnames, mycolnames)
+
+```
+
+### Check all columns
+
+### Check NAs
+  - use summary()
+
+### Remove rows/columns as needed
+
+### Re-code factors as needed
+
+# Complex objects
+
+  - use `names()` and `str()` to look at the structure of a complex object
+  - most complex objects have a list-like structure
+  - S3 vs. S4 classes
+    - `$` notation works for S3
+    - Try `@` instead for S4 classes
+    - For more on S4: http://adv-r.had.co.nz/OO-essentials.html
+
+```{r}
+myff <- french_fries
+results <- lm(potato ~ treatment, data = myff)
+results
+summary(results)
+plot(results)
+class(results)
+names(results)
+str(results)
+plot(results$residuals)
+results.summary <- summary(results)
+names(results.summary)
+results.summary$adj.r.squared
+results.summary$coefficients
+class(results.summary$coefficients)
+condition.pvals <- results.summary$coefficients[2:3, "Pr(>|t|)"]
+condition.pvals
+
+str(summary(results))
+# ?lm
+```
+
+The adjusted $R^2$ for this model is `r results.summary$adj.r.squared`.

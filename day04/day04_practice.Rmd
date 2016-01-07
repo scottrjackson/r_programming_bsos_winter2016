@@ -1,0 +1,53 @@
+---
+title: "Day 4 Practice"
+output: html_document
+---
+
+1. Read in the (modified) database of phoneme pairs from Wedel, Kaplan, and Jackson (2013).  The relative path from the working directory of this project is: "scottdata/CognitionPaperModifiedData.csv"
+
+2. Read in the data using the WRONG function.  What does it look like?  Re-read with the right function for the rest of the practice exercises.
+
+3. Change some (or all) of the column names.  Provide a table that links original column names with the current/new column names.
+
+4. Locate NAs.  Remove all rows containing NAs.
+   (Hint: try using functions `is.na()`, `complete.cases()`, and `anyNA()`)
+
+5. Recode the "Corpus" variable in the following way:
+Am = American
+Du = Dutch
+Fr = French
+Ge = German
+HK = Cantonese
+Ko = Korean
+RP = British
+Sl = Slovakian
+Sp = Spanish
+
+6. Create a "long" version of this data, where `WithinMinPairs` and `BetweenMinPairs` are all in one `MinPairs` variable, and there is a column called `MinPairType` that labels whether they are "within" or "between".
+
+7. Log-transform this new `MinPairs` variable.
+
+8. Reshape the data back to "wide" format with `WithinMinPairs` and `BetweenMinPairs` (now log-transformed) are in different columns.
+
+9. Create a new categorical variable that labels "low", "mid", and "high" values of the (log-transformed) `WithinMinPairs` variable.
+
+10. Reorder the levels of this categorical variable.
+
+11. Get the mean value of (the log-transformed) `WithinMinPairs` variable for each language in the `Corpus` factor.
+
+12. Run a logistic regression, using `glm()`, where "Merged" status is the (binary) dependent variable, and "WithinMinPairs" is the predictor.
+  - Hint #1: the basic usage of `glm()` is:
+`
+results <- glm(DV ~ predictor1 + predictor2 + ...  ,                data = dataframe.object,
+               family = "binomial")
+`
+  - Hint #2: you need the DV to be 0s and 1s, not a factor.
+  
+13. Use `summary()` to display the results.
+
+14. Using INLINE code, report the estimate, standard error, and p-value for the WithinMinPairs coefficient.  Hint: save the results as objects first, then put in inline code.
+
+EXTRA CREDIT: figure out how to display the above results with only a few decimal places
+
+HINT: use `str()` to figure out how to extract these values.
+
