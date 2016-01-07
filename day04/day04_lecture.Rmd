@@ -287,6 +287,11 @@ select(sleep, c(3, 1))
     - `tidyr`
     - https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html
     - http://vita.had.co.nz/papers/tidy-data.html
+```{r}
+library(tidyr)
+spread(mysleep, group, extra)
+gather(mysleep.cast, time, extra.sleep, c(pre,post))
+```
 
 # Data cleaning
 
