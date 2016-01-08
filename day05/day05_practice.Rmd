@@ -1,0 +1,69 @@
+---
+title: "Day 5 Practice"
+output: html_document
+---
+
+# Data manipulation
+
+0. Start with this code, for the starting data set (where we left off). SET THE WORKING DIRECTORY TO WHERE THIS FILE IS.
+
+```{r}
+practice <- read.csv("../scottdata/CognitionPaperModifiedData.csv")
+practice <- practice[complete.cases(practice), ]
+```
+
+1. Get the mean value of the `WithinMinPairs` variable for each language in the `Corpus` factor.
+
+2. Run a logistic regression, using `glm()`, where "Merged" status is the (binary) dependent variable, and "WithinMinPairs" is the predictor.
+  - Hint #1: the basic usage of `glm()` is:
+
+results <- glm(DV ~ predictor1 + predictor2 + ...  ,                               
+               data = dataframe.object, family = "binomial")
+
+  - Hint #2: you need the DV to be 0s and 1s, not a factor.
+  
+3. Use `summary()` to display the results.
+
+4. Using INLINE code, report the estimate, standard error, and p-value for the WithinMinPairs coefficient.  Hint: save the results as objects first, then put in inline code.
+
+EXTRA CREDIT: figure out how to display the above results with only a few decimal places
+
+HINT: use `str()` to figure out how to extract these values.
+
+# Graphics
+
+HINT: as you go, save plots as objects. This will make the last question much easier.
+
+0. Get the `french_fries` data into "long" format.  Call the new value variable "rating" and the factor with all the descriptors "flavor". Re-code the labels of the `treatment` variable to be "oil1", "oil2", and "oil3".
+
+
+1. Use `ggplot()` to plot a histogram and a density plot (separately) for `rating` 
+   - Try some different values for `binwidth` for the histogram.
+   - Try some different values for `adjust` for the density plot.
+
+
+2. How does the distribution look?  Try transforming the variable and try to get it to look more normal (i.e., more Gaussian).  If it already looks normal, do something to it to make it look non-normal.
+
+3. Let's break this up by the `treatment` factor
+   - Plot it as a density plot, mapping `color` to the factor
+   - Same, but try using `fill` instead of `color`
+   - Same, using `linetype` instead of `color`
+   - Plot the data as a boxplot, with the factor as `x` and the numerical variable as `y`
+
+
+4. Now let's look at breaking up a histogram across this factor.  With the same variables you used in #3:
+   - Plot a histogram, but use faceting to display them, one above the other.
+   - Try mapping the factor to `color` or `fill`, to see what that looks like.
+
+
+5. Now cast the data back to where the different flavors are in different columns. Pick two of the flavor columns to explore
+   - Create a scatterplot, with one variable mapped to `x` and the other to `y`.
+   - Plot a "loess" smoother on top of the scatterplot
+   - Plot a regression line on top of the scatterplot (instead of the loess)
+
+6. With this same scatterplot, break it up by `treatment`
+   - Map `treatment` to `color`
+ 
+
+7. Output all of the plots above as a single PDF.
+
