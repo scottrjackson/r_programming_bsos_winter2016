@@ -24,11 +24,18 @@ library(reshape2)
 
 myff <- french_fries
 myff.melt <- melt(myff, id.vars = 1:4, value.name = "rating", variable.name = "taste")
+head(myff.melt)
 
-aggregateff <- dcast(myff.melt, treatment ~ taste, 
-                  value.var = "rating", fun.aggregate = mean, na.rm = TRUE)
+head(dcast(myff.melt, time + treatment + subject + rep ~ taste, value.var = "rating"))
+head(dcast(myff.melt, ... ~ taste, value.var = "rating"))
+
+aggregateff <- dcast(myff.melt, taste ~ ., value.var = "rating", fun.aggregate = mean, na.rm = TRUE)
 
 aggregateff
+
+aggregateff <- dcast(myff.melt, treatment ~ taste, value.var = "rating", fun.aggregate = mean, na.rm = TRUE)
+aggregateff
+
 
 aggregateff2 <- dcast(myff.melt, treatment + taste ~ ., 
                   value.var = "rating", fun.aggregate = mean, na.rm = TRUE)
@@ -48,9 +55,12 @@ aggregateff2
 
 ```{r}
 library(dplyr)
-aggregateff3 <- group_by(myff.melt, treatment, taste) %>% summarize(mean.rating = mean(rating, na.rm = TRUE))
+head(myff.melt)
+aggregateff3 <- group_by(myff.melt, treatment, taste) %>% summarize(mean = mean(rating, na.rm = TRUE), sd = sd(rating, na.rm = TRUE), max.rating = max(rating, na.rm = TRUE), N = length(rating))
+as.data.frame(aggregateff3)
+# add informative comment here
 
-aggregateff3
+as.data.frame(aggregateff3)
 identical(aggregateff2, aggregateff3)
 identical(aggregateff2, as.data.frame(aggregateff3))
 
@@ -73,21 +83,24 @@ mean(log(x + 2))
 summarize(group_by(myff.melt, treatment, taste), mean.rating = mean(rating, na.rm = TRUE))
 
 # same as above, using the %>% operator
-group_by(myff.melt, treatment, taste) %>%
+agg.results <- group_by(myff.melt, treatment, taste) %>%
   summarize(mean.rating = mean(rating, na.rm = TRUE))
+
+agg.results
 
 ```
 
 ### Subsetting with `dplyr`
 
 ```{r}
+sleep
 sleep[sleep$group == 1, ]
 filter(sleep, group == 1) # same results
 
 sleep[sleep$group == 1 & sleep$extra > 0.2, ]
 filter(sleep, group == 1, extra > 0.2) # same results
 
-sleep[, c("ID", "extra")]
+sleep[ , c("ID", "extra")]
 select(sleep, ID, extra)
 select(sleep, 3, 1)
 select(sleep, c(3, 1))
@@ -111,6 +124,8 @@ mysleep.cast <- dcast(mysleep, ID ~ group, value.var = "extra")
 mysleep.cast
 
 spread(mysleep, group, extra)
+
+melt(mysleep.cast, measure.vars = c("pre", "post"), variable.name = "time", value.name = "extra.sleep")
 gather(mysleep.cast, time, extra.sleep, c(pre,post))
 ```
 
@@ -161,11 +176,16 @@ data.frame(oldnames, mycolnames)
     - For more on S4: http://adv-r.had.co.nz/OO-essentials.html
 
 ```{r}
+mysleep
+# my.ttest <- t.test(extra ~ group, data = mysleep)
+# print(my.ttest)
+# str(my.ttest)
+
 myff <- french_fries
 results <- lm(potato ~ treatment, data = myff)
 results
 summary(results)
-plot(results)
+# plot(results)
 class(results)
 names(results)
 str(results)
@@ -175,10 +195,10 @@ names(results.summary)
 results.summary$adj.r.squared
 results.summary$coefficients
 class(results.summary$coefficients)
-condition.pvals <- results.summary$coefficients[2:3, "Pr(>|t|)"]
+condition.pvals <- results.summary$coefficients[c("treatment2", "treatment3"), "Pr(>|t|)"]
 condition.pvals
 
-str(summary(results))
+# str(summary(results))
 # ?lm
 ```
 
@@ -254,7 +274,11 @@ mybaseplot + geom_histogram(binwidth = .2)
 names(mybaseplot)
 str(mybaseplot)
 
-mybaseplot + geom_density(adjust = .5, fill = "grey")
+base.density <- mybaseplot + geom_density(adjust = .5, fill = "grey")
+
+mydensity <- geom_density(adjust = .5, fill = "grey")
+
+mybaseplot + mydensity
 
 ```
 
@@ -263,9 +287,10 @@ colors()
 ```
 
 ```{r}
+pdf("bunch of plots.pdf")
 ggplot(myris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 
-ggplot(myris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point(color = "red")
+ggplot(myris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point(color = "papayawhip") + theme_classic()
 
 ggplot(myris, aes(x = Sepal.Length, y = Sepal.Width)) + 
   geom_point(aes(color = Species), size = 10) + 
@@ -287,7 +312,7 @@ ggplot(myris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   geom_point(size = 4) + 
   theme_minimal() +
   geom_smooth(method = "lm")
-
+dev.off()
 
 ```
 

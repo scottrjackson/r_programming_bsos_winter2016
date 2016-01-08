@@ -7,7 +7,12 @@ Save your homework in a well-documented R Markdown document.  Email me the .Rmd 
 
 0. Read in your data from the data file(s) you provide me. If you have more than one data file that can/should be combined, use `rbind`, `cbind`, or `merge` to combine them.
 
+```{r}
+mydata <- read.csv("CognitionPaperModifiedData.csv")
+```
+
 1. Change the column names of your data to something easier to work with.  If you like your column names, change them into something else reasonable, just for practice.
+
 
 2. List ALL the issues you can see where it looks like your data is being read in a weird way.  If your data looks perfect, find some way to mess it up :-)
 
@@ -24,6 +29,32 @@ Save your homework in a well-documented R Markdown document.  Email me the .Rmd 
 8. Transform a variable
 
 9. Re-code at least one factor.  Provide a table that shows the correspondence between old levels and new levels.
+
+```{r}
+mydata <- data.frame(ID = paste("subject", 1:20, sep = ""), gender = rep(c(0, 1), each = 10), RT = rnorm(20))
+
+mydata
+
+mydata$gender <- as.factor(mydata$gender)
+
+levels(mydata$gender) <- c("male", "female")
+
+mydata <- data.frame(ID = paste("subject", 1:20, sep = ""), gender = rep(c(0, 1), each = 10), RT = rnorm(20))
+summary(mydata)
+
+#mydata$gender <- abs(mydata$gender - 1)
+
+# swapping factor levels
+mydata$gender <- as.factor(mydata$gender)
+
+levels(mydata$gender)
+as.numeric(mydata$gender)
+
+levels(mydata$gender) <- c("female", "male")
+mydata
+
+```
+
 
 10. Add a new factor, where the levels are conditional on the values of some other variable. E.g., a factor of "high", "medium", and "low" based on thresholds for another variable.
 

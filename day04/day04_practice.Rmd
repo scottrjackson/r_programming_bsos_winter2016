@@ -34,6 +34,9 @@ colnames(mydata2)[c(1, 3)] <- c("Language", "Phonemes")
 
 ```{r}
 summary(mydata)
+trouble.column <- mydata$HiSegType
+mydata <- mydata[!is.na(trouble.column), ]
+
 mydata.cc <- mydata[complete.cases(mydata), ]
 nrow(mydata)
 nrow(mydata.cc)
