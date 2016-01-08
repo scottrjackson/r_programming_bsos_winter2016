@@ -1,0 +1,45 @@
+---
+title: "Day 5 Homework"
+output: html_document
+---
+
+0. Reload your data, and re-use the code you already have for getting things formatted nicely (columns renamed, factors relabeled, etc.)
+
+
+1. Aggregate (e.g., get mean/median/max/something) of some numerical variable, over one or more factors.  Try using both `dcast()` from the `reshape2` package, and `group_by()` plus `summarize()` from the `dplyr` package.
+
+
+2. Run TWO DIFFERENT simple analyses or statistical tests, such as linear regression (`lm()`), logistic regression (`glm()`), correlation test (`cor.test()`), t-test (`t.test()`), or non-parametric tests (e.g., `wilcox.test()`).  For each of these:
+  - Describe why you are doing this analysis, i.e., what question is it answering?
+  - I won't judge you on statistical expertise!  (though I will make comments if I think I can be helpful)
+  - Report some key statistics from the analysis, using **inline** code. HINT: outside of an R code chunk, use `r codehere` format.
+  
+  
+3. Get your data into "long" format, at least with some variables.  This will help with some of the following questions.
+
+
+4. Pick a single numerical variable from your data.  Use `ggplot` to plot a histogram and a density plot (separately).
+   - Try some different values for `binwidth` for the histogram.
+   - Try some different values for `adjust` for the density plot.
+
+
+5. How does the distribution look?  Try transforming the variable and try to get it to look more normal (i.e., more Gaussian).  If it already looks normal, do something to it to make it look non-normal.
+
+
+6. Is there a factor that you can use to break up this variable into groups of observations?  If not, reshape your data so that there is, or create a factor if necessary.  Then, do the following:
+   - Plot it as a density plot, mapping `color` to the factor
+   - Same, but try using `fill` instead of `color`
+   - Same, using `linetype` instead of `color`
+   - Plot the data as a boxplot, with the factor as `x` and the numerical variable as `y`  HINT: use geom_boxplot
+
+
+7. Output all of the plots above as a single PDF.
+
+
+8. Is there a better type of visualization for your data?  What numbers would you like to be able to visualize better?  Be as explicit as possible, and write some "pseudo-code" to ilustrate what you think you would like.
+
+
+9. Save your Markdown document that answers all of these questions (with code), and send to me by 9AM.
+
+
+
