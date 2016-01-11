@@ -56,7 +56,7 @@ aggregateff2
 ```{r}
 library(dplyr)
 head(myff.melt)
-aggregateff3 <- group_by(myff.melt, treatment, taste) %>% summarize(mean = mean(rating, na.rm = TRUE), sd = sd(rating, na.rm = TRUE), max.rating = max(rating, na.rm = TRUE), N = length(rating))
+aggregateff3 <- group_by(myff.melt, treatment, taste) %>% summarize(mean = mean(rating, na.rm = TRUE), sd = sd(rating, na.rm = TRUE), max.rating = max(rating, na.rm = TRUE), N = length(which(!is.na(rating))))
 as.data.frame(aggregateff3)
 # add informative comment here
 
