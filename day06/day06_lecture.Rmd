@@ -22,25 +22,147 @@ output: html_document
   - change factor level labels
 - reshape
   - melt/gather into long format
+    - melt is from the reshape2 package
+    - gather is from the tidyr package
   - dcast/spread into wide format
+    - dcast is from reshape2
+    - spread is from tidyr
 - aggregate
   - collapse values across rows, by some other variable/factor
   - dplyr way: group_by() %>% summarize()
   - reshape2 way: dcast(data, cols ~ ., fun.aggregate = some.function)
 
+```{r}
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(tidyr)
+
+myiris <- iris
+myiris$plant <- 1:nrow(myiris)
+
+# get into long format
+myiris.long1 <- melt(myiris)
+myiris.long1 <- melt(myiris, id.vars = "Species")
+myiris.long1 <- melt(myiris, measure.vars = 1:4)
+
+myiris.long1 <- melt(myiris, measure.vars = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"), value.name = "cm")
+
+head(myiris.long1)
+
+myiris.long2 <- gather(myiris, variable, cm, Sepal.Length:Petal.Width)
+head(myiris.long2)
+
+myiris.long.clean <- separate(myiris.long2, variable, c("flower.part", "dimension"), sep = "\\.")
+head(myiris.long.clean)
+summary(myiris.long.clean)
+?strsplit
+
+# rename factor levels
+myiris.tidy <- myiris.long.clean
+myiris.tidy$dimension <- as.factor(myiris.tidy$dimension)
+
+levels(myiris.tidy$dimension) <- c("L", "W")
+summary(myiris.tidy)
+
+mysleep <- sleep
+
+codes <- c("Bob", "Susan", "Jimmy", "Cora", "Daphne", "Ronan", "Scott", "David Bowie", "Ziggy", "Major Tom")
+
+IDs <- c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+
+code.book <- data.frame(old = IDs, new = codes, stringsAsFactors = FALSE)
+
+mysleep.subset <- filter(mysleep, !ID %in% c("3", "6")) %>% droplevels()
+summary(mysleep.subset)
+
+summary(code.book)
+
+mysleep.subset$ID <- as.character(mysleep.subset$ID)
+
+colnames(code.book) <- c("ID", "newID")
+
+mysleep.subset <- merge(mysleep.subset, code.book)
+
+xtabs(~ ID + newID, mysleep.subset)
+```
+
 # More graphics
 
 ## faceting
+```{r}
+myff <- french_fries
+
+myff.long <- gather(myff, taste, rating, potato:painty)
+
+baseplot <- ggplot(myff.long, aes(x = rating))
+
+baseplot + geom_histogram()
+
+baseplot + geom_histogram(aes(fill = taste))
+
+baseplot + geom_histogram() + facet_wrap(~ taste)
+
+head(myiris.tidy)
+
+ggplot(myiris.tidy, aes(x = cm)) + geom_histogram() + facet_wrap(~ Species)
+
+ggplot(myiris.tidy, aes(x = cm)) + geom_histogram() + facet_grid(Species ~ .)
+
+myiris.wide <- dcast(myiris.tidy, plant + Species + dimension ~ flower.part, value.var = "cm")
+
+ggplot(myiris.wide, aes(Sepal, Petal)) + geom_point() + geom_smooth(method = "lm") + facet_grid(Species ~ dimension)
+
+```
+
+
+
+```{r}
+myanscombe <- anscombe
+myanscombe$obs <- 1:nrow(myanscombe)
+
+ans.melt <- melt(myanscombe, measure.vars = 1:8)
+
+ans.melt$newvar <- gsub("(\\d)", "_\\1", ans.melt$variable)
+
+ans.melt <- separate(ans.melt, newvar, c("dimension", "plot"), sep = "_")
+
+ans.cast <- dcast(ans.melt, obs + plot ~ dimension, value.var = "value")
+
+ggplot(ans.cast, aes(x, y)) + geom_point() + geom_smooth(method = "lm", se = FALSE, linetype = 3) + facet_wrap(~ plot)
+
+```
 
 ## geom_text
+```{r}
+ggplot(ans.cast, aes(x, y)) + geom_text(aes(label = obs)) +  facet_wrap(~ plot) #+ geom_point()
+
+```
+
 
 ## geom_bar
+```{r}
+mysleep.means <- dcast(mysleep, group ~ ., value.var = "extra", fun.aggregate = mean)
+
+mysleep.means2 <- group_by(mysleep, group) %>% summarize(meanExtra = mean(extra))
+
+ggplot(mysleep.means2, aes(1, meanExtra)) + geom_bar(stat = "identity", aes(fill = group), position = "dodge") 
+
+
+```
 
 ## dodging
 
 ## bars vs. dots
 
 ## errorbars
+```{r}
+
+mysleep.means2 <- group_by(mysleep, group) %>% summarize(meanExtra = mean(extra), sdExtra = sd(extra), N = length(extra))
+
+ggplot(mysleep.means2, aes(group, meanExtra)) + geom_bar(stat = "identity", aes(fill = group)) + geom_errorbar(aes(ymax = meanExtra + 1.96*(sdExtra/sqrt(N)), ymin = meanExtra - 1.96*(sdExtra/sqrt(N))))
+
+```
 
 ## overplotting
 
