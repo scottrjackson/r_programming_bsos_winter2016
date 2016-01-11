@@ -1,0 +1,40 @@
+---
+title: "Day 6 Homework
+output: html_document
+---
+
+0. Get your data read back in (use code you've used before!).
+
+1. Find a variable whose distribution you would like to explore (can be the same as the one you plotted last time).  Use the `ggplot2` package to create a histogram.
+
+2. Now let's look at breaking up the histogram across a factor. Identify some kind of grouping factor with only a handful of levels.
+   - Plot a histogram, and map the "fill" color of the histogram to the grouping factor in your data.
+   - Now try faceting by that factor instead, so that you get a different histogram for each level of that factor.  Play around with different ways to facet, e.g:
+     - facet_wrap(~ yourfactor)
+     - facet_grid(. ~ yourfactor)
+     - facet_grid(yourfactor ~ .)
+   - Which visualization seems most useful or informative for your data, and why?
+
+3. Now find two numerical variables that you want to plot against each other.  
+   - Create a scatterplot, with one variable mapped to x and the other to y.
+   - You may need to reshape your data.  For example, if you have one numerical variable and a "condition" factor, you could use `dcast` to spread that variable across multiple columns (one per level of the factor).
+   - Plot a "loess" smoother on top of the scatterplot (HINT: this is the default smoother)
+   - Plot a regression line on top of the scatterplot (instead of the loess)
+
+4. Are there any other factors that split up the variable plotted in #3?  If so try the following:
+   - Map the factor to `color`
+   - Facet by the factor
+   - Which visualization do you like better?  Why?
+   
+5. Create one more version of the scatterplots in #3 or #4, but this time use `geom_text()` instead of `geom_point()`, and map some variable to the "label" aesthetic of that geom.  Does this add any useful info to the graph?  Is there a different plot in your data where plotting labels in this way could be useful?
+
+6. Create a bar plot of the cell means of some variable. Steps:
+   - Find a numerical variable and a grouping factor (this can be the same as those chosen above).  
+   - Get the mean value of the numerical variable, broken down by the factor.  Use either the aggregation methods from the "dplyr" package or the "reshape2" package.
+   - Plot this new aggregated data frame, using the "bar" geom.
+   
+7. Create a bar plot that gets means broken down by TWO grouping factors.  For example, if Factor A has levels "red" and "blue" and Factor B has levels "north" and "south", get the cell means of "red north", "red south", "blue north", and "blue south."  
+   - Use the dplyr or reshape2 methods to get these means into a data frame format.
+   - Use the "bar" geom, but map the two variables to different graphical dimension.  One should be the "x" value, but the other should be mapped to some other visual property.
+
+
