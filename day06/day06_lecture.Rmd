@@ -1,0 +1,47 @@
+---
+title: "Day 6 Lecture"
+output: html_document
+---
+
+# Outline
+  - Review Homework 5
+  - Recap "data wrangling"
+  - More graphics
+
+# Homework 5 Review
+
+# Data munging recap
+
+- read data in carefully
+- inspect values
+  - value types
+  - ranges (of numerics)
+  - levels (of factors)
+- transform/format variables
+  - transform numbers
+  - change factor level labels
+- reshape
+  - melt/gather into long format
+  - dcast/spread into wide format
+- aggregate
+  - collapse values across rows, by some other variable/factor
+  - dplyr way: group_by() %>% summarize()
+  - reshape2 way: dcast(data, cols ~ ., fun.aggregate = some.function)
+
+# More graphics
+
+## faceting
+
+## geom_text
+
+## geom_bar
+
+## dodging
+
+## bars vs. dots
+
+## errorbars
+
+## overplotting
+
+## polishing appearance
