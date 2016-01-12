@@ -1,0 +1,25 @@
+---
+title: "Day 7 lecture"
+output: html_document
+---
+
+# Outline
+  - HW 6 review
+  - Tweaking plots
+  - Exercises & review
+
+# HW 6 review
+
+# Tweaking plots
+
+## "convenience" and "conceptual"
+## axis labels
+## legend
+## scales
+## color control
+## themes
+## position control
+## overplotting
+## additional layers
+## annotation
+
