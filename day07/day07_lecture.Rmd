@@ -14,10 +14,70 @@ output: html_document
 
 ## "convenience" and "conceptual"
 ## axis labels
+
+```{r}
+library(tidyr)
+library(reshape2)
+library(ggplot2)
+library(dplyr)
+
+myris <- iris
+myris$plant <- 1:nrow(myris)
+myris <- gather(myris, myvariable, cm, 1:4)
+myris <- separate(myris, myvariable, c("part", "dimension"), sep = "\\.")
+myris$part <- as.factor(myris$part)
+myris$dimension <- as.factor(myris$dimension)
+
+ggplot(myris, aes(cm)) + geom_histogram() + xlab("centimeters")
+
+myris.cast <- dcast(myris, plant + Species + part ~ dimension, value.var = "cm")
+
+ggplot(myris.cast, aes(x = Length, Width)) + geom_point() + xlab("length of the plant") + ylab("width of the plant")
+
+```
+
 ## legend
+
+```{r}
+myris.scatter <- ggplot(myris.cast, aes(x = Length, Width)) + geom_point(aes(color = Species))
+myris.scatter
+myris.scatter + theme(legend.position = "top")
+myris.scatter + theme(legend.position = "none")
+
+```
+
 ## scales
+
+```{r}
+myris.scatter + scale_x_continuous(labels = c("two", "four", "six", "eight"), breaks = c(2, 4, 6, 8))
+myris.scatter + scale_x_continuous(breaks = 1:8, labels = c("two", "four", "six", "eight", "red", "green", "up", "down"))
+
+myris.scatter + scale_x_continuous(breaks = seq(1, 8, .3))
+
+
+```
+
 ## color control
+
+```{r}
+myris.scatter + scale_color_manual(values = c("red", "blue", "green"))
+
+# RGB
+umd.red <- rgb(224, 58, 62, maxColorValue = 255)
+umd.gold <- rgb(255, 225, 79, maxColorValue = 255)
+umd.black <- rgb(0, 0, 0, maxColorValue = 255)
+
+myris.scatter + scale_color_manual(values = c(umd.red, umd.gold, umd.black)) + theme_minimal()
+ # put theme_minimal() (or other pre-set themes) before your other theme() calls
+
+myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal()
+
+```
+
 ## themes
+
+
+
 ## position control
 ## overplotting
 ## additional layers
