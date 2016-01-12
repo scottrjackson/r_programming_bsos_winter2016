@@ -71,6 +71,9 @@ myris.scatter + scale_color_manual(values = c(umd.red, umd.gold, umd.black))
 
 myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal()
 
+my.colors <- c("pink", "seashell", umd.gold)
+ggplot(myris.cast, aes(x = Length, y = Width)) + geom_point(aes(color = Species), size = 4) + scale_color_manual(values = my.colors)
+
 ```
 
 ## themes
@@ -78,8 +81,7 @@ myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal()
 Check out this page for LOTS of options: http://docs.ggplot2.org/current/theme.html
 
 ```{r}
-myris.scatter
-+ scale_color_brewer(palette = "Set1") + theme_minimal()
+myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal()
  # put theme_minimal() (or other pre-set themes) before your other theme() calls
 myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal() + theme(legend.position = "none")
 myris.scatter + scale_color_brewer(palette = "Set1") + theme(legend.position = "none") + theme_minimal()
@@ -92,12 +94,41 @@ myris.scatter + scale_color_brewer(palette = "Set1") + theme(legend.position = "
 
 ```{r}
 los.fusion <- read.csv("../scottdata/los_fusion.csv")
-los.fusion$firstvalue.new<-ifelse(los.fusion$firstvalue=="abortion","A","M")
 
-ggplot(los.fusion, aes(x = firstval_fusion, y = secondval_fusion)) + geom_text(aes(label = firstvalue.new))
+ggplot(los.fusion, aes(x = firstval_fusion, y = secondval_fusion)) + geom_point(position = position_jitter(height = .3, width = .3))
+
+ggplot(los.fusion, aes(x = firstval_fusion, y = secondval_fusion)) + geom_point(alpha = .1, size = 5)
+
+los.fusion.agg <- dcast(los.fusion, firstval_fusion + secondval_fusion ~ ., fun.aggregate = length)
+colnames(los.fusion.agg)[3] <- "N"
+
+ggplot(los.fusion.agg, aes(firstval_fusion, secondval_fusion)) + geom_point(aes(size = N))
+
+los.fusion.agg2 <- dcast(los.fusion, firstval_fusion + secondval_fusion + firstvalue.new ~ ., fun.aggregate = length)
+colnames(los.fusion.agg2)[4] <- "N"
+
+newplot <- ggplot(los.fusion.agg2, aes(firstval_fusion, secondval_fusion)) + geom_text(aes(label = firstvalue.new, size = N), position = position_jitter(height = 0, width = .4))
+newplot
+
+ggplot(los.fusion, aes(x = firstval_fusion, y = secondval_fusion)) + geom_text(aes(label = firstvalue.new, color = firstvalue.new), position = position_jitter(width = .3, height = .3)) + scale_color_manual(values = c(umd.red, umd.gold)) + theme_minimal()
+
+ggplot(myris, aes(cm)) + geom_density(aes(fill = Species), alpha = .4)
 
 ```
 
 ## additional layers
+
+```{r}
+newplot + geom_abline(intercept = 0, slope = 1, color = "red", linetype = 2)
+
+
+
+```
+
+
 ## annotation
 
+```{r}
+newplot + theme_minimal() + annotate("rect", xmin = 5.8, xmax = 6.2, ymin = 5.8, ymax = 6.2, alpha = .4) + annotate("text", label = "check out this overplotting!", x = 2, y = 5, size = 5, color = "red") + labs(title = "This great plot") + theme(plot.title = element_text(size = 20, color = "red", face = "italic"))
+
+```
