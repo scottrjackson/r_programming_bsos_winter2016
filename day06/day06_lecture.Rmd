@@ -151,10 +151,6 @@ ggplot(mysleep.means2, aes(1, meanExtra)) + geom_bar(stat = "identity", aes(fill
 
 ```
 
-## dodging
-
-## bars vs. dots
-
 ## errorbars
 ```{r}
 
@@ -163,7 +159,3 @@ mysleep.means2 <- group_by(mysleep, group) %>% summarize(meanExtra = mean(extra)
 ggplot(mysleep.means2, aes(group, meanExtra)) + geom_bar(stat = "identity", aes(fill = group)) + geom_errorbar(aes(ymax = meanExtra + 1.96*(sdExtra/sqrt(N)), ymin = meanExtra - 1.96*(sdExtra/sqrt(N))))
 
 ```
-
-## overplotting
-
-## polishing appearance
