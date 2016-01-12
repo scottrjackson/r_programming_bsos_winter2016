@@ -1,0 +1,106 @@
+---
+title: "Day 6 Homework
+output: html_document
+---
+
+0. Get your data read back in (use code you've used before!).
+
+```{r}
+library(ggplot2)
+library(dplyr)
+mp <- read.csv("../scottdata/CognitionPaperFinalData.csv")
+```
+
+1. Find a variable whose distribution you would like to explore (can be the same as the one you plotted last time).  Use the `ggplot2` package to create a histogram.
+
+```{r}
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram()
+
+```
+
+
+2. Now let's look at breaking up the histogram across a factor. Identify some kind of grouping factor with only a handful of levels.
+   - Plot a histogram, and map the "fill" color of the histogram to the grouping factor in your data.
+   - Now try faceting by that factor instead, so that you get a different histogram for each level of that factor.  Play around with different ways to facet, e.g:
+     - facet_wrap(~ yourfactor)
+     - facet_grid(. ~ yourfactor)
+     - facet_grid(yourfactor ~ .)
+   - Which visualization seems most useful or informative for your data, and why?
+
+```{r}
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram(aes(fill = Merged))
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_wrap(~ Merged)
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(. ~ Merged)
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merged ~ .)
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merged ~ Corpus)
+
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merged ~ ., scales = "free_y")
+
+```
+
+3. Now find two numerical variables that you want to plot against each other.  
+   - Create a scatterplot, with one variable mapped to x and the other to y.
+   - You may need to reshape your data.  For example, if you have one numerical variable and a "condition" factor, you could use `dcast` to spread that variable across multiple columns (one per level of the factor).
+   - Plot a "loess" smoother on top of the scatterplot (HINT: this is the default smoother)
+   - Plot a regression line on top of the scatterplot (instead of the loess)
+
+```{r}
+scatter1 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_point()
+scatter1
+scatter1 + geom_smooth()
+scatter1 + geom_smooth(method = "lm")
+
+```
+
+4. Are there any other factors that split up the variable plotted in #3?  If so try the following:
+   - Map the factor to `color`
+   - Facet by the factor
+   - Which visualization do you like better?  Why?
+
+```{r}
+scatter2 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_point(aes(color = Merged))
+scatter2
+scatter2 + facet_wrap(~ Merged)
+scatter3 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_point(aes(color = Corpus))
+scatter3
+scatter3 + facet_wrap(~ Corpus)
+```
+   
+5. Create one more version of the scatterplots in #3 or #4, but this time use `geom_text()` instead of `geom_point()`, and map some variable to the "label" aesthetic of that geom.  Does this add any useful info to the graph?  Is there a different plot in your data where plotting labels in this way could be useful?
+
+
+```{r}
+scatter4 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_text(aes(color = Merged, label = Merged))
+scatter4
+scatter4 + facet_wrap(~ Corpus)
+mp$Merged <- factor(mp$Merged, levels = c("Unmerged", "Merged"))
+scatter4 + facet_wrap(~ Corpus)
+scatter4 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_text(aes(color = Corpus, label = Corpus))
+scatter4
+```
+   
+6. Create a bar plot of the cell means of some variable. Steps:
+   - Find a numerical variable and a grouping factor (this can be the same as those chosen above).  
+   - Get the mean value of the numerical variable, broken down by the factor.  Use either the aggregation methods from the "dplyr" package or the "reshape2" package.
+   - Plot this new aggregated data frame, using the "bar" geom.
+
+```{r}
+mp.agg1 <- group_by(mp, Corpus) %>% summarize(meanWMP = mean(WithinMinPairs))
+mp.agg1
+ggplot(mp.agg1, aes(Corpus, meanWMP)) + geom_bar(stat = "identity")
+```
+7. Create a bar plot that gets means broken down by TWO grouping factors.  For example, if Factor A has levels "red" and "blue" and Factor B has levels "north" and "south", get the cell means of "red north", "red south", "blue north", and "blue south."  
+   - Use the dplyr or reshape2 methods to get these means into a data frame format.
+   - Use the "bar" geom, but map the two variables to different graphical dimension.  One should be the "x" value, but the other should be mapped to some other visual property.
+
+```{r}
+mp.agg2 <- group_by(mp, Corpus, Merged) %>% summarize(meanWMP = mean(WithinMinPairs), meanBMP = mean(BetweenMinPairs))
+mp.agg2
+ggplot(mp.agg2, aes(Corpus, meanWMP)) + geom_bar(stat = "identity", aes(fill = Merged))
+mp.bars2 <- ggplot(mp.agg2, aes(Corpus, meanWMP)) + geom_bar(stat = "identity", aes(fill = Merged), position = "dodge")
+mp.bars2 + facet_wrap(~ Corpus)
+mp.bars2 + facet_wrap(~ Corpus, scales = "free_y")
+mp.bars2 + facet_wrap(~ Corpus, scales = "free")
+
+```
+
