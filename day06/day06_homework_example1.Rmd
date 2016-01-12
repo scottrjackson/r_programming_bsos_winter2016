@@ -14,6 +14,8 @@ mp <- read.csv("../scottdata/CognitionPaperFinalData.csv")
 1. Find a variable whose distribution you would like to explore (can be the same as the one you plotted last time).  Use the `ggplot2` package to create a histogram.
 
 ```{r}
+ggplot(mp, aes(WithinMinPairs)) + geom_histogram()
+
 ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram()
 
 ```
@@ -34,7 +36,7 @@ ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(. ~ M
 ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merged ~ .)
 ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merged ~ Corpus)
 
-ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merged ~ ., scales = "free_y")
+ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_wrap(~ Merged, scales = "free_y")
 
 ```
 
@@ -48,7 +50,7 @@ ggplot(mp, aes(log(WithinMinPairs + 0.5))) + geom_histogram() + facet_grid(Merge
 scatter1 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_point()
 scatter1
 scatter1 + geom_smooth()
-scatter1 + geom_smooth(method = "lm")
+scatter1 + geom_smooth(method = "lm") + geom_smooth()
 
 ```
 
@@ -77,6 +79,8 @@ mp$Merged <- factor(mp$Merged, levels = c("Unmerged", "Merged"))
 scatter4 + facet_wrap(~ Corpus)
 scatter4 <- ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_text(aes(color = Corpus, label = Corpus))
 scatter4
+ggplot(mp, aes(WithinMinPairs, BetweenMinPairs)) + geom_text(aes(color = Corpus, label = Corpus)) + geom_point(size = 2)
+
 ```
    
 6. Create a bar plot of the cell means of some variable. Steps:
@@ -87,7 +91,7 @@ scatter4
 ```{r}
 mp.agg1 <- group_by(mp, Corpus) %>% summarize(meanWMP = mean(WithinMinPairs))
 mp.agg1
-ggplot(mp.agg1, aes(Corpus, meanWMP)) + geom_bar(stat = "identity")
+ggplot(mp.agg1, aes(x = Corpus, y = meanWMP)) + geom_bar(stat = "identity")
 ```
 7. Create a bar plot that gets means broken down by TWO grouping factors.  For example, if Factor A has levels "red" and "blue" and Factor B has levels "north" and "south", get the cell means of "red north", "red south", "blue north", and "blue south."  
    - Use the dplyr or reshape2 methods to get these means into a data frame format.
@@ -97,7 +101,10 @@ ggplot(mp.agg1, aes(Corpus, meanWMP)) + geom_bar(stat = "identity")
 mp.agg2 <- group_by(mp, Corpus, Merged) %>% summarize(meanWMP = mean(WithinMinPairs), meanBMP = mean(BetweenMinPairs))
 mp.agg2
 ggplot(mp.agg2, aes(Corpus, meanWMP)) + geom_bar(stat = "identity", aes(fill = Merged))
+ggplot(mp.agg2, aes(Corpus, meanWMP)) + geom_bar(stat = "identity", fill = "red")
 mp.bars2 <- ggplot(mp.agg2, aes(Corpus, meanWMP)) + geom_bar(stat = "identity", aes(fill = Merged), position = "dodge")
+mp.bars2 <- ggplot(mp.agg2, aes(Corpus, meanWMP)) + geom_bar(stat = "identity", aes(fill = Merged), position = "dodge")
+mp.bars2
 mp.bars2 + facet_wrap(~ Corpus)
 mp.bars2 + facet_wrap(~ Corpus, scales = "free_y")
 mp.bars2 + facet_wrap(~ Corpus, scales = "free")

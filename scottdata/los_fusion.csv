@@ -1,121 +1,121 @@
-"ID","losCond","firstvalue","mc_insig","mc_humil","insig_humil","mc_worth","mc_purpose","marr_value","marr_fusion","attn_check_1","marr_ss_total","marr_act","marr_rad","abor_value","abor_fusion","attn_check2","abor_ss_total","abor_act","abor_rad","age","sex","race_ethni","sex_orient","educ","religiosity","poli","poli_importance","firstval_fusion","secondval_fusion","firstval_ss","secondval_ss","firstval_act","secondval_act","firstval_rad","secondval_rad"
-"4953","control","abortion",1,1,1,5,5,"equality",2,4,3.8,1,2.5,"choice",3,4,3.8,1,2.5,26,"male","white","heterosexual","bachelor's",4,2,15,3,2,3.8,3.8,1,1,2.5,2.5
-"5181","control","abortion",1,1,1,5,6,"equality",2,4,4.5,1,1,"choice",3,4,4.5,1,1,30,"female","white","heterosexual","bachelor's",1,4,9,3,2,4.5,4.5,1,1,1,1
-"2311","los","abortion",4,4,4,7,6,"equality",6,4,3.9,7,2.75,"choice",6,4,4.2,7,2.5,25,"female","white","heterosexual","some univ",7,1,15,6,6,4.2,3.9,7,7,2.5,2.75
-"3372","los","marriage",3,2,2.5,6,5,"equality",2,4,3.9,1,1,"life",4,4,2.9,4.5,3,43,"female","white","heterosexual","some univ",5,5,13,2,4,3.9,2.9,1,4.5,1,3
-"5199","control","marriage",4,1,2.5,4,4,"equality",1,4,4.2,1.75,1.25,"choice",1,4,3.7,1.75,1.5,26,"male","white","heterosexual","some univ",5,1,14,1,1,4.2,3.7,1.75,1.75,1.25,1.5
-"5420","los","marriage",1,1,1,7,7,"traditional",6,4,3.3,1,1,"choice",6,4,4,7,5.5,23,"female","white","heterosexual","bachelor's",1,2,14,6,6,3.3,4,1,7,1,5.5
-"3888","control","abortion",2,2,2,6,5,"traditional",2,4,2.5,1.25,1,"choice",4,4,4.2,2.75,3.25,40,"male","white","heterosexual","bachelor's",1,2,13,4,2,4.2,2.5,2.75,1.25,3.25,1
-"3839","los","abortion",3,5,4,4,5,"equality",5,4,4.6,6.25,4,"choice",6,4,4.5,6.25,4,37,"female","hispanic","heterosexual","adv degree",5,2,13,6,5,4.5,4.6,6.25,6.25,4,4
-"3025","control","marriage",2,1,1.5,3,2,"equality",2,4,3.6,3.5,2.75,"choice",3,4,3.9,5,3,38,"male","white","heterosexual","bachelor's",4,3,14,2,3,3.6,3.9,3.5,5,2.75,3
-"2111","control","marriage",5,1,3,4,4,"equality",4,4,4,1.75,2.75,"choice",3,4,4,1.5,2.75,34,"male","white","heterosexual","bachelor's",1,2,13,4,3,4,4,1.75,1.5,2.75,2.75
-"2234","control","abortion",4,5,4.5,3,4,"equality",3,4,3.5,3.25,3.75,"choice",6,4,3.9,4.5,4.25,20,"male","white","heterosexual","some univ",1,4,12,6,3,3.9,3.5,4.5,3.25,4.25,3.75
-"5658","los","marriage",6,6,6,2,2,"equality",6,4,4.7,7,7,"choice",4,4,4.1,7,7,29,"male","white","homosexual","bachelor's",1,2,13,6,4,4.7,4.1,7,7,7,7
-"4785","control","abortion",1,1,1,7,5,"equality",6,4,4.2,3.25,4.5,"choice",6,4,3.8,5,2.75,31,"male","black","heterosexual","bachelor's",1,3,12,6,6,3.8,4.2,5,3.25,2.75,4.5
-"5530","control","abortion",1,2,1.5,1,1,"equality",2,4,5.4,4,4.25,"choice",5,4,3.3,3.75,2,28,"male","black","heterosexual","bachelor's",5,4,12,5,2,3.3,5.4,3.75,4,2,4.25
-"1540","control","marriage",2,2,2,4,4,"equality",3,4,3.7,2,2,"choice",4,4,3.3,4.5,2.25,55,"male","white","heterosexual","bachelor's",4,2,14,3,4,3.7,3.3,2,4.5,2,2.25
-"3545","los","abortion",3,7,5,5,1,"equality",1,4,3.8,3.25,3.75,"choice",3,4,3.1,1.25,1.5,36,"male","white","heterosexual","two year",1,1,13,3,1,3.1,3.8,1.25,3.25,1.5,3.75
-"1712","los","marriage",2,3,2.5,2,2,"equality",6,4,4.5,7,6.25,"choice",6,4,3.9,6.25,4.5,22,"female","white","bisexual","trade/apprentice",3,3,14,6,6,4.5,3.9,7,6.25,6.25,4.5
-"3691","control","abortion",4,7,5.5,7,7,"equality",6,4,4.6,3.5,1,"choice",6,4,4.4,6.25,2.25,47,"male","white","heterosexual","bachelor's",1,2,15,6,6,4.4,4.6,6.25,3.5,2.25,1
-"3525","control","marriage",2,1,1.5,5,2,"equality",4,4,2.5,6,2.5,"choice",3,4,2.8,6,2.5,24,"female","white","heterosexual","adv degree",1,2,14,4,3,2.5,2.8,6,6,2.5,2.5
-"2823","control","marriage",1,1,1,5,1,"equality",6,4,3.6,3.5,1.5,"choice",6,4,4.6,4.5,1,39,"male","white","heterosexual","trade/apprentice",1,2,14,6,6,3.6,4.6,3.5,4.5,1.5,1
-"2501","los","abortion",6,6,6,2,2,"equality",3,4,3.5,1,1,"choice",3,4,3.5,1,1,26,"male","asian","heterosexual","bachelor's",1,4,9,3,3,3.5,3.5,1,1,1,1
-"3625","control","marriage",6,1,3.5,6,6,"equality",5,4,4.7,3,1,"choice",6,4,4.5,2.25,1,34,"male","asian","heterosexual","adv degree",2,4,15,5,6,4.7,4.5,3,2.25,1,1
-"1046","control","abortion",5,2,3.5,4,6,"equality",5,4,4.4,4.75,2,"choice",2,4,4.2,4.5,2,25,"female","white","heterosexual","bachelor's",2,5,13,2,5,4.2,4.4,4.5,4.75,2,2
-"1630","control","abortion",2,1,1.5,5,5,"equality",2,4,3.5,1,1,"choice",2,4,3.2,1,1,24,"female","white","heterosexual","bachelor's",3,5,13,2,2,3.2,3.5,1,1,1,1
-"2641","control","marriage",1,1,1,7,6,"traditional",6,4,4.4,5.75,3.75,"life",6,4,4.4,6,4.75,50,"female","white","heterosexual","bachelor's",7,6,15,6,6,4.4,4.4,5.75,6,3.75,4.75
-"3734","control","abortion",3,3,3,3,3,"equality",4,4,3.5,3.75,2.25,"choice",6,4,3.4,3.25,3.75,23,"female","black","heterosexual","bachelor's",6,2,11,6,4,3.4,3.5,3.25,3.75,3.75,2.25
-"5537","control","marriage",4,1,2.5,5,4,"equality",3,4,2.7,4,2,"choice",4,4,3.8,3.75,2.25,37,"male","white","heterosexual","some univ",4,3,12,3,4,2.7,3.8,4,3.75,2,2.25
-"5397","control","marriage",1,3,2,4,3,"equality",5,4,4.2,7,6.25,"choice",6,4,4,7,6.75,27,"female","white","heterosexual","adv degree",2,1,15,5,6,4.2,4,7,7,6.25,6.75
-"2739","control","abortion",1,1,1,3,2,"equality",2,4,2.2,1,1,"life",6,4,4.3,7,7,23,"male","hispanic","heterosexual","high school",1,4,12,6,2,4.3,2.2,7,1,7,1
-"2549","los","marriage",1,7,4,1,2,"equality",1,4,4,2,2.25,"choice",2,4,3.2,2,2.5,44,"male","other","heterosexual","adv degree",4,4,14,1,2,4,3.2,2,2,2.25,2.5
-"4790","control","abortion",2,5,3.5,4,4,"traditional",6,4,3.6,4.5,3.5,"life",6,4,3.4,5.5,5.5,64,"female","white","heterosexual","some high",4,4,13,6,6,3.4,3.6,5.5,4.5,5.5,3.5
-"2324","los","abortion",4,5,4.5,2,2,"equality",4,4,4.6,7,3.25,"choice",5,4,4.5,6,3,43,"female","white","heterosexual","two year",6,2,14,5,4,4.5,4.6,6,7,3,3.25
-"1937","los","marriage",5,6,5.5,3,2,"equality",4,4,3.6,2.5,2.5,"choice",3,4,3.1,1.5,1.75,32,"female","white","bisexual","some univ",4,3,13,4,3,3.6,3.1,2.5,1.5,2.5,1.75
-"3265","control","abortion",2,1,1.5,4,2,"equality",1,4,3.4,1,1,"choice",3,4,3.2,3,1.75,41,"male","white","heterosexual","bachelor's",3,3,13,3,1,3.2,3.4,3,1,1.75,1
-"3445","los","marriage",5,5,5,3,3,"equality",4,4,3.8,5.25,1.75,"choice",3,4,3.6,4,1.75,53,"male","white","homosexual","adv degree",1,2,14,4,3,3.8,3.6,5.25,4,1.75,1.75
-"3708","control","marriage",1,5,3,7,7,"traditional",6,4,2.2,5,5,"life",6,4,2.8,5,5,28,"male","white","heterosexual","some univ",4,5,12,6,6,2.2,2.8,5,5,5,5
-"4542","los","marriage",2,5,3.5,6,2,"traditional",6,6,6,2,2,"life",6,4,1,1,1,21,"female","white","heterosexual","high school",6,4,15,6,6,6,1,2,1,2,1
-"4640","los","abortion",7,7,7,1,2,"equality",6,4,3.8,6,3.25,"choice",2,4,3.3,2.25,1.25,23,"female","white","bisexual","some univ",1,3,10,2,6,3.3,3.8,2.25,6,1.25,3.25
-"3742","control","abortion",3,3,3,4,4,"equality",5,4,2.4,4,4,"choice",6,4,1.8,5.5,4.5,23,"female","asian","bisexual","some univ",1,3,11,6,5,1.8,2.4,5.5,4,4.5,4
-"2097","control","abortion",2,2,2,5,5,"equality",1,4,4,1,1,"life",1,4,3.8,1,1,74,"male","white","heterosexual","some univ",1,4,11,1,1,3.8,4,1,1,1,1
-"1465","los","marriage",4,6,5,1,2,"equality",5,4,4.4,6.75,4.25,"choice",2,4,4.2,5.25,3.25,36,"female","white","bisexual","adv degree",1,1,14,5,2,4.4,4.2,6.75,5.25,4.25,3.25
-"1023","control","marriage",1,1,1,4,1,"equality",6,4,3.9,5.75,2,"choice",6,4,3.9,6.75,2,40,"female","white","heterosexual","adv degree",6,4,14,6,6,3.9,3.9,5.75,6.75,2,2
-"4017","los","abortion",5,7,6,4,1,"equality",5,4,4,6,3.25,"choice",4,4,3.8,5.75,2.25,56,"female","white","heterosexual","adv degree",4,2,14,4,5,3.8,4,5.75,6,2.25,3.25
-"5738","control","marriage",5,2,3.5,5,5,"equality",3,4,3.5,1,1,"choice",3,4,3.6,1,1,39,"male","white","heterosexual","bachelor's",1,6,14,3,3,3.5,3.6,1,1,1,1
-"1910","control","marriage",1,1,1,6,5,"traditional",5,4,4.3,2.25,2.5,"life",3,4,4.3,1.75,2.5,55,"male","white","heterosexual","bachelor's",2,5,15,5,3,4.3,4.3,2.25,1.75,2.5,2.5
-"4826","los","abortion",7,7,7,1,1,"traditional",6,4,4,7,7,"life",6,4,4.6,7,7,28,"male","white","heterosexual","some univ",5,7,15,6,6,4.6,4,7,7,7,7
-"1045","control","marriage",1,1,1,6,6,"traditional",6,4,3.3,5,1,"life",6,4,4,7,1,35,"male","black","heterosexual","bachelor's",7,3,13,6,6,3.3,4,5,7,1,1
-"1480","los","abortion",5,5,5,3,2,"equality",1,4,4.3,5,2.25,"choice",1,4,3.9,5,2.25,56,"female","white","heterosexual","bachelor's",1,2,14,1,1,3.9,4.3,5,5,2.25,2.25
-"5735","los","marriage",7,7,7,1,1,"traditional",5,4,2.4,5.5,1.25,"life",6,4,3.5,5.75,1.25,21,"female","white","heterosexual","two year",6,4,13,5,6,2.4,3.5,5.5,5.75,1.25,1.25
-"1681","control","marriage",2,2,2,4,5,"equality",5,4,4,7,5,"choice",5,4,4.3,7,5,24,"male","white","bisexual","some univ",1,1,15,5,5,4,4.3,7,7,5,5
-"1788","control","abortion",1,1,1,4,5,"traditional",1,4,5.2,4.5,3.75,"life",3,4,5.3,4.25,4,42,"female","hispanic","heterosexual","high school",4,4,12,3,1,5.3,5.2,4.25,4.5,4,3.75
-"1171","control","marriage",2,2,2,4,3,"equality",3,4,3.4,1,2.5,"choice",3,4,3.4,1,3.75,33,"male","white","heterosexual","some univ",1,3,12,3,3,3.4,3.4,1,1,2.5,3.75
-"1932","los","marriage",5,6,5.5,2,6,"equality",6,4,3.5,2.5,2.5,"choice",3,4,3.2,2.25,2,39,"female","white","heterosexual","bachelor's",1,1,14,6,3,3.5,3.2,2.5,2.25,2.5,2
-"3744","control","abortion",2,1,1.5,4,2,"equality",6,4,4.3,6,1,"choice",5,4,4.2,5,1,47,"female","white","heterosexual","adv degree",2,4,13,5,6,4.2,4.3,5,6,1,1
-"3492","control","marriage",2,2,2,6,5,"equality",3,4,4.1,5.75,3.5,"choice",3,4,4,6,3.5,64,"female","white","heterosexual","adv degree",6,3,14,3,3,4.1,4,5.75,6,3.5,3.5
-"3018","control","abortion",1,1,1,4,4,"equality",6,4,5,6,2.75,"choice",6,4,5.1,6,3.25,58,"female","white","heterosexual","some univ",1,2,15,6,6,5.1,5,6,6,3.25,2.75
-"4963","control","marriage",1,2,1.5,5,4,"traditional",6,4,3.8,7,4,"life",5,4,4.1,7,4.75,28,"female","white","heterosexual","trade/apprentice",7,5,14,6,5,3.8,4.1,7,7,4,4.75
-"5258","los","abortion",6,6,6,4,4,"traditional",4,4,2.8,2,1.25,"choice",3,4,3,2,1,33,"female","white","heterosexual","bachelor's",1,6,13,3,4,3,2.8,2,2,1,1.25
-"5823","los","marriage",5,7,6,5,6,"traditional",6,4,4.2,1,1,"choice",1,4,3.8,1,1,22,"female","white","heterosexual","bachelor's",1,4,12,6,1,4.2,3.8,1,1,1,1
-"1485","control","abortion",2,2,2,5,5,"equality",6,4,2.4,4.75,1.75,"choice",6,4,2.5,4,2.5,26,"male","white","heterosexual","bachelor's",1,2,14,6,6,2.5,2.4,4,4.75,2.5,1.75
-"5942","los","marriage",6,6,6,3,4,"traditional",6,4,3.8,4,1,"choice",6,4,3.7,4.75,1,57,"female","black","heterosexual","some univ",2,4,13,6,6,3.8,3.7,4,4.75,1,1
-"2275","control","abortion",1,1,1,5,4,"traditional",5,4,4.4,3.75,6.5,"life",4,4,3.8,6.25,6.75,32,"male","white","heterosexual","bachelor's",7,6,14,4,5,3.8,4.4,6.25,3.75,6.75,6.5
-"5615","los","abortion",6,7,6.5,2,3,"equality",6,4,3.6,6.75,5,"choice",5,4,2.4,6,4.5,37,"female","black","homosexual","adv degree",1,1,14,5,6,2.4,3.6,6,6.75,4.5,5
-"5794","los","marriage",6,6,6,1,1,"equality",6,4,3.7,4.5,2,"choice",6,4,3.7,7,5,46,"female","asian","heterosexual","bachelor's",1,2,14,6,6,3.7,3.7,4.5,7,2,5
-"3088","control","abortion",1,1,1,4,2,"equality",6,4,3.3,5.25,1.75,"choice",4,4,2.6,4.75,2.25,37,"female","asian","heterosexual","bachelor's",2,2,14,4,6,2.6,3.3,4.75,5.25,2.25,1.75
-"5533","los","marriage",6,6,6,2,3,"equality",6,4,4.6,6,1.25,"choice",2,4,4,4.75,1.25,33,"female","white","heterosexual","adv degree",4,3,14,6,2,4.6,4,6,4.75,1.25,1.25
-"4720","control","abortion",1,1,1,6,5,"equality",6,4,4.5,6.5,3,"choice",6,4,4.2,6,3,60,"female","white","heterosexual","high school",1,1,14,6,6,4.2,4.5,6,6.5,3,3
-"1003","control","abortion",6,3,4.5,4,6,"equality",5,2,4.1,5,3.5,"choice",5,5,4.2,5.25,4,46,"male","white","heterosexual","two year",5,4,13,5,5,4.2,4.1,5.25,5,4,3.5
-"3410","los","marriage",5,7,6,2,2,"equality",6,4,3.2,4.25,1.25,"choice",6,4,3.8,3.5,1.25,55,"male","white","prefer not to answer","bachelor's",1,4,12,6,6,3.2,3.8,4.25,3.5,1.25,1.25
-"2753","los","abortion",4,4,4,4,4,"traditional",5,4,3.2,5,4.25,"choice",4,4,1.4,4.75,4.25,45,"male","asian","heterosexual","adv degree",4,5,13,4,5,1.4,3.2,4.75,5,4.25,4.25
-"3323","control","marriage",4,4,4,4,4,"equality",6,4,5,6,3,"choice",5,4,4.2,6,3,37,"female","white","homosexual","some univ",4,2,14,6,5,5,4.2,6,6,3,3
-"2080","los","abortion",6,6,6,2,2,"traditional",4,5,1,4,4,"life",5,1,1.4,4,4,26,"female","black","heterosexual","bachelor's",2,2,13,5,4,1.4,1,4,4,4,4
-"2791","control","marriage",2,1,1.5,6,6,"equality",6,4,4.6,6.75,5.5,"choice",6,4,5.2,7,5.5,35,"female","white","heterosexual","trade/apprentice",1,2,12,6,6,4.6,5.2,6.75,7,5.5,5.5
-"2842","los","abortion",4,6,5,4,6,"traditional",6,4,4,6,2,"life",6,4,4.6,6,4.75,53,"female","white","heterosexual","high school",4,6,13,6,6,4.6,4,6,6,4.75,2
-"5994","los","marriage",7,7,7,3,1,"equality",2,4,3.9,1.5,1.5,"choice",6,4,3.4,1.25,2,36,"male","white","heterosexual","high school",5,2,13,2,6,3.9,3.4,1.5,1.25,1.5,2
-"2699","control","abortion",2,5,3.5,7,4,"traditional",5,4,4.1,3.25,4.5,"choice",4,4,4.1,3.5,4.5,24,"female","white","heterosexual","some univ",4,4,13,4,5,4.1,4.1,3.5,3.25,4.5,4.5
-"3652","control","marriage",4,3,3.5,5,4,"equality",4,3,4.1,3.5,4.75,"choice",5,4,4.1,4,4.75,34,"male","white","heterosexual","bachelor's",5,4,13,4,5,4.1,4.1,3.5,4,4.75,4.75
-"5707","control","abortion",1,1,1,5,5,"equality",2,4,3.3,4,1,"choice",4,4,3.7,3.5,1.25,19,"male","white","heterosexual","high school",5,6,14,4,2,3.7,3.3,3.5,4,1.25,1
-"2416","los","marriage",5,6,5.5,4,3,"traditional",3,4,3.9,2,1,"life",2,4,4,2.5,1,42,"female","white","heterosexual","bachelor's",5,5,13,3,2,3.9,4,2,2.5,1,1
-"3404","control","abortion",4,3,3.5,4,4,"equality",4,4,4.7,3,4.25,"life",3,4,4.8,3.25,3.75,28,"female","asian","heterosexual","bachelor's",3,2,11,3,4,4.8,4.7,3.25,3,3.75,4.25
-"1253","los","marriage",5,7,6,2,2,"equality",6,4,4,4,2.5,"choice",6,4,4.6,5.25,2,42,"female","white","heterosexual","some univ",4,3,10,6,6,4,4.6,4,5.25,2.5,2
-"5209","los","marriage",6,6,6,4,4,"equality",6,4,4,4.75,2.25,"choice",6,4,4.1,4.75,1.75,55,"female","white","heterosexual","bachelor's",3,2,13,6,6,4,4.1,4.75,4.75,2.25,1.75
-"1342","los","abortion",3,3,3,4,3,"equality",2,4,4,4.5,4.5,"life",3,4,4.4,4.5,4.5,19,"female","black","heterosexual","some univ",5,4,12,3,2,4.4,4,4.5,4.5,4.5,4.5
-"4238","control","marriage",2,1,1.5,5,5,"traditional",6,4,4,7,2.5,"life",6,4,3.4,7,2.5,54,"male","white","heterosexual","some univ",6,6,14,6,6,4,3.4,7,7,2.5,2.5
-"2421","los","abortion",6,6,6,1,1,"equality",6,4,3.8,3,3,"choice",6,4,3.6,3.5,3,36,"male","white","heterosexual","adv degree",1,1,15,6,6,3.6,3.8,3.5,3,3,3
-"4362","control","marriage",1,1,1,4,1,"equality",2,4,3.8,1.5,1,"life",3,4,4,2.75,1.75,27,"female","white","heterosexual","some univ",2,5,15,2,3,3.8,4,1.5,2.75,1,1.75
-"5676","control","abortion",1,1,1,5,5,"traditional",6,4,4,3.5,1,"life",6,4,3.4,6.25,1,41,"female","white","heterosexual","adv degree",7,4,12,6,6,3.4,4,6.25,3.5,1,1
-"1131","control","marriage",1,1,1,4,5,"equality",4,4,4.2,4,3,"choice",3,4,3.8,4,2.5,29,"male","white","heterosexual","adv degree",1,2,13,4,3,4.2,3.8,4,4,3,2.5
-"5705","los","abortion",4,4,4,4,4,"equality",4,5,4,4.25,4.5,"life",6,3,1.8,4.5,4.5,26,"female","other","bisexual","some univ",4,4,12,6,4,1.8,4,4.5,4.25,4.5,4.5
-"5886","control","marriage",3,4,3.5,4,5,"equality",5,4,3.6,5.25,2.5,"choice",3,4,3.3,4.5,2,25,"male","white","heterosexual","bachelor's",2,3,12,5,3,3.6,3.3,5.25,4.5,2.5,2
-"1786","los","marriage",5,5,5,2,2,"equality",5,4,3.9,5,2.5,"choice",6,4,4.4,5.25,2.25,47,"female","white","heterosexual","bachelor's",1,2,13,5,6,3.9,4.4,5,5.25,2.5,2.25
-"2643","control","abortion",2,1,1.5,6,5,"equality",2,4,3.5,1.25,1.25,"choice",6,4,4.6,3.25,1.5,35,"female","white","heterosexual","bachelor's",1,6,13,6,2,4.6,3.5,3.25,1.25,1.5,1.25
-"1414","los","marriage",4,6,5,4,2,"equality",5,5,4.5,4.75,1.75,"choice",6,4,4,5,1.75,64,"female","white","heterosexual","bachelor's",3,5,13,5,6,4.5,4,4.75,5,1.75,1.75
-"4481","los","abortion",5,5,5,2,5,"equality",6,4,3.9,5.75,1,"choice",6,4,4.3,5.5,1,31,"male","white","heterosexual","some univ",1,4,13,6,6,4.3,3.9,5.5,5.75,1,1
-"4615","control","abortion",1,1,1,4,4,"equality",2,4,2.8,5.25,2.25,"choice",2,4,2.3,5,2.75,28,"female","white","homosexual","two year",2,2,13,2,2,2.3,2.8,5,5.25,2.75,2.25
-"2537","los","marriage",5,5,5,3,4,"equality",4,4,4,4.75,3,"life",4,4,3.6,5,3,35,"female","white","heterosexual","high school",1,3,13,4,4,4,3.6,4.75,5,3,3
-"3163","control","abortion",2,2,2,4,4,"equality",4,4,3.9,4,4,"choice",4,4,3.9,4.25,4,42,"male","white","heterosexual","adv degree",1,1,14,4,4,3.9,3.9,4.25,4,4,4
-"3496","los","marriage",4,5,4.5,1,4,"equality",6,4,4,1.75,1.75,"choice",6,4,4,1.75,1.75,52,"female","white","heterosexual","two year",1,4,9,6,6,4,4,1.75,1.75,1.75,1.75
-"3745","control","marriage",2,1,1.5,5,4,"equality",5,4,2.5,6,4.25,"choice",6,4,3.3,6.75,5.5,28,"female","white","heterosexual","bachelor's",1,1,15,5,6,2.5,3.3,6,6.75,4.25,5.5
-"1289","control","abortion",1,6,3.5,2,4,"traditional",5,4,3.7,4,1.75,"life",6,4,6.4,6.25,1,25,"female","hispanic","heterosexual","high school",4,7,14,6,5,6.4,3.7,6.25,4,1,1.75
-"3447","control","abortion",3,2,2.5,5,5,"equality",4,4,3.7,6,3.5,"choice",3,4,4.2,5,3.5,18,"male","white","heterosexual","high school",2,2,13,3,4,4.2,3.7,5,6,3.5,3.5
-"5653","control","abortion",4,1,2.5,4,4,"equality",3,4,3.4,3,4,"choice",3,4,2.9,3,1.75,22,"prefer not to answer","white","heterosexual","bachelor's",1,2,13,3,3,2.9,3.4,3,3,1.75,4
-"4088","los","marriage",4,7,5.5,1,1,"traditional",6,4,3.7,7,1,"life",6,4,4,7,1,34,"female","white","heterosexual","bachelor's",6,7,15,6,6,3.7,4,7,7,1,1
-"4536","control","abortion",2,5,3.5,3,2,"equality",2,4,4.2,1.5,2.5,"choice",4,4,4,2,2.75,27,"male","white","heterosexual","high school",1,5,15,4,2,4,4.2,2,1.5,2.75,2.5
-"5245","los","marriage",6,6,6,4,5,"traditional",5,4,5.7,6,4.5,"life",5,4,5.3,5.5,3.75,24,"male","white","heterosexual","some univ",4,5,13,5,5,5.7,5.3,6,5.5,4.5,3.75
-"1783","control","marriage",2,1,1.5,7,5,"equality",2,4,4.1,1,1,"choice",4,4,4.1,4,1,52,"female","white","heterosexual","bachelor's",3,5,13,2,4,4.1,4.1,1,4,1,1
-"5829","los","abortion",7,7,7,3,2,"traditional",6,4,4.4,6,3,"choice",6,4,4.1,5.75,4.75,53,"female","white","heterosexual","high school",4,3,14,6,6,4.1,4.4,5.75,6,4.75,3
-"1971","control","marriage",5,1,3,4,4,"equality",4,4,4.4,4.75,2.25,"choice",3,4,4.5,4.25,1.25,27,"female","white","heterosexual","some univ",1,4,14,4,3,4.4,4.5,4.75,4.25,2.25,1.25
-"2697","control","abortion",1,1,1,1,1,"equality",6,4,4.1,5.5,2.25,"choice",6,4,2.9,5.25,2.5,41,"male","white","heterosexual","bachelor's",1,2,13,6,6,2.9,4.1,5.25,5.5,2.5,2.25
-"1372","los","marriage",1,1,1,7,6,"equality",6,4,4.4,4.75,4.75,"choice",2,4,4,1.75,5.25,52,"female","white","homosexual","bachelor's",1,1,13,6,2,4.4,4,4.75,1.75,4.75,5.25
-"3355","control","abortion",4,1,2.5,4,3,"traditional",4,4,4.4,3,1,"life",3,4,4.3,3.5,1.75,48,"female","white","heterosexual","bachelor's",2,6,14,3,4,4.3,4.4,3.5,3,1.75,1
-"3349","los","abortion",2,2,2,6,2,"traditional",6,4,3.7,3.25,5.25,"life",4,4,4.4,4.5,4.75,29,"male","white","heterosexual","trade/apprentice",3,3,12,4,6,4.4,3.7,4.5,3.25,4.75,5.25
-"4553","los","marriage",2,6,4,4,4,"equality",4,4,3.6,2.5,3,"choice",5,4,3.7,3,2.75,22,"male","asian","heterosexual","bachelor's",1,2,12,4,5,3.6,3.7,2.5,3,3,2.75
-"5466","control","abortion",1,1,1,3,2,"equality",6,4,3.6,7,3.25,"choice",6,4,3.9,7,3.5,30,"female","white","heterosexual","bachelor's",1,2,14,6,6,3.9,3.6,7,7,3.5,3.25
-"1322","los","marriage",3,5,4,3,4,"traditional",6,4,3.6,6.25,3.75,"life",5,4,3.2,5.75,3.5,35,"female","white","heterosexual","two year",7,4,14,6,5,3.6,3.2,6.25,5.75,3.75,3.5
-"3641","control","abortion",3,4,3.5,3,5,"equality",4,4,3.7,4.25,3.25,"choice",4,4,4.6,3.75,3.5,19,"male","asian","heterosexual","some univ",3,4,12,4,4,4.6,3.7,3.75,4.25,3.5,3.25
-"3136","control","marriage",1,1,1,4,4,"equality",6,4,3.7,4,3,"choice",5,4,4.2,4.75,2.5,30,"male","white","heterosexual","bachelor's",1,2,13,6,5,3.7,4.2,4,4.75,3,2.5
-"2938","los","abortion",6,6,6,2,2,"equality",6,4,5.4,7,1,"choice",6,4,4.7,6.25,1,31,"female","white","bisexual","some univ",1,3,14,6,6,4.7,5.4,6.25,7,1,1
-"3893","control","marriage",4,6,5,6,6,"traditional",6,4,4.9,5.5,6,"life",6,4,5.4,4.75,4.5,30,"female","white","homosexual","bachelor's",6,4,13,6,6,4.9,5.4,5.5,4.75,6,4.5
-"3109","los","abortion",7,7,7,1,2,"equality",6,4,4,7,3.5,"choice",6,4,4.4,7,5.75,21,"female","black","heterosexual","some univ",7,1,15,6,6,4.4,4,7,7,5.75,3.5
+"ID","losCond","firstvalue","mc_insig","mc_humil","insig_humil","mc_worth","mc_purpose","marr_value","marr_fusion","attn_check_1","marr_ss_total","marr_act","marr_rad","abor_value","abor_fusion","attn_check2","abor_ss_total","abor_act","abor_rad","age","sex","race_ethni","sex_orient","educ","religiosity","poli","poli_importance","firstval_fusion","secondval_fusion","firstval_ss","secondval_ss","firstval_act","secondval_act","firstval_rad","secondval_rad","firstvalue.new"
+"4953","control","abortion",1,1,1,5,5,"equality",2,4,3.8,1,2.5,"choice",3,4,3.8,1,2.5,26,"male","white","heterosexual","bachelor's",4,2,15,3,2,3.8,3.8,1,1,2.5,2.5,"A"
+"5181","control","abortion",1,1,1,5,6,"equality",2,4,4.5,1,1,"choice",3,4,4.5,1,1,30,"female","white","heterosexual","bachelor's",1,4,9,3,2,4.5,4.5,1,1,1,1,"A"
+"2311","los","abortion",4,4,4,7,6,"equality",6,4,3.9,7,2.75,"choice",6,4,4.2,7,2.5,25,"female","white","heterosexual","some univ",7,1,15,6,6,4.2,3.9,7,7,2.5,2.75,"A"
+"3372","los","marriage",3,2,2.5,6,5,"equality",2,4,3.9,1,1,"life",4,4,2.9,4.5,3,43,"female","white","heterosexual","some univ",5,5,13,2,4,3.9,2.9,1,4.5,1,3,"M"
+"5199","control","marriage",4,1,2.5,4,4,"equality",1,4,4.2,1.75,1.25,"choice",1,4,3.7,1.75,1.5,26,"male","white","heterosexual","some univ",5,1,14,1,1,4.2,3.7,1.75,1.75,1.25,1.5,"M"
+"5420","los","marriage",1,1,1,7,7,"traditional",6,4,3.3,1,1,"choice",6,4,4,7,5.5,23,"female","white","heterosexual","bachelor's",1,2,14,6,6,3.3,4,1,7,1,5.5,"M"
+"3888","control","abortion",2,2,2,6,5,"traditional",2,4,2.5,1.25,1,"choice",4,4,4.2,2.75,3.25,40,"male","white","heterosexual","bachelor's",1,2,13,4,2,4.2,2.5,2.75,1.25,3.25,1,"A"
+"3839","los","abortion",3,5,4,4,5,"equality",5,4,4.6,6.25,4,"choice",6,4,4.5,6.25,4,37,"female","hispanic","heterosexual","adv degree",5,2,13,6,5,4.5,4.6,6.25,6.25,4,4,"A"
+"3025","control","marriage",2,1,1.5,3,2,"equality",2,4,3.6,3.5,2.75,"choice",3,4,3.9,5,3,38,"male","white","heterosexual","bachelor's",4,3,14,2,3,3.6,3.9,3.5,5,2.75,3,"M"
+"2111","control","marriage",5,1,3,4,4,"equality",4,4,4,1.75,2.75,"choice",3,4,4,1.5,2.75,34,"male","white","heterosexual","bachelor's",1,2,13,4,3,4,4,1.75,1.5,2.75,2.75,"M"
+"2234","control","abortion",4,5,4.5,3,4,"equality",3,4,3.5,3.25,3.75,"choice",6,4,3.9,4.5,4.25,20,"male","white","heterosexual","some univ",1,4,12,6,3,3.9,3.5,4.5,3.25,4.25,3.75,"A"
+"5658","los","marriage",6,6,6,2,2,"equality",6,4,4.7,7,7,"choice",4,4,4.1,7,7,29,"male","white","homosexual","bachelor's",1,2,13,6,4,4.7,4.1,7,7,7,7,"M"
+"4785","control","abortion",1,1,1,7,5,"equality",6,4,4.2,3.25,4.5,"choice",6,4,3.8,5,2.75,31,"male","black","heterosexual","bachelor's",1,3,12,6,6,3.8,4.2,5,3.25,2.75,4.5,"A"
+"5530","control","abortion",1,2,1.5,1,1,"equality",2,4,5.4,4,4.25,"choice",5,4,3.3,3.75,2,28,"male","black","heterosexual","bachelor's",5,4,12,5,2,3.3,5.4,3.75,4,2,4.25,"A"
+"1540","control","marriage",2,2,2,4,4,"equality",3,4,3.7,2,2,"choice",4,4,3.3,4.5,2.25,55,"male","white","heterosexual","bachelor's",4,2,14,3,4,3.7,3.3,2,4.5,2,2.25,"M"
+"3545","los","abortion",3,7,5,5,1,"equality",1,4,3.8,3.25,3.75,"choice",3,4,3.1,1.25,1.5,36,"male","white","heterosexual","two year",1,1,13,3,1,3.1,3.8,1.25,3.25,1.5,3.75,"A"
+"1712","los","marriage",2,3,2.5,2,2,"equality",6,4,4.5,7,6.25,"choice",6,4,3.9,6.25,4.5,22,"female","white","bisexual","trade/apprentice",3,3,14,6,6,4.5,3.9,7,6.25,6.25,4.5,"M"
+"3691","control","abortion",4,7,5.5,7,7,"equality",6,4,4.6,3.5,1,"choice",6,4,4.4,6.25,2.25,47,"male","white","heterosexual","bachelor's",1,2,15,6,6,4.4,4.6,6.25,3.5,2.25,1,"A"
+"3525","control","marriage",2,1,1.5,5,2,"equality",4,4,2.5,6,2.5,"choice",3,4,2.8,6,2.5,24,"female","white","heterosexual","adv degree",1,2,14,4,3,2.5,2.8,6,6,2.5,2.5,"M"
+"2823","control","marriage",1,1,1,5,1,"equality",6,4,3.6,3.5,1.5,"choice",6,4,4.6,4.5,1,39,"male","white","heterosexual","trade/apprentice",1,2,14,6,6,3.6,4.6,3.5,4.5,1.5,1,"M"
+"2501","los","abortion",6,6,6,2,2,"equality",3,4,3.5,1,1,"choice",3,4,3.5,1,1,26,"male","asian","heterosexual","bachelor's",1,4,9,3,3,3.5,3.5,1,1,1,1,"A"
+"3625","control","marriage",6,1,3.5,6,6,"equality",5,4,4.7,3,1,"choice",6,4,4.5,2.25,1,34,"male","asian","heterosexual","adv degree",2,4,15,5,6,4.7,4.5,3,2.25,1,1,"M"
+"1046","control","abortion",5,2,3.5,4,6,"equality",5,4,4.4,4.75,2,"choice",2,4,4.2,4.5,2,25,"female","white","heterosexual","bachelor's",2,5,13,2,5,4.2,4.4,4.5,4.75,2,2,"A"
+"1630","control","abortion",2,1,1.5,5,5,"equality",2,4,3.5,1,1,"choice",2,4,3.2,1,1,24,"female","white","heterosexual","bachelor's",3,5,13,2,2,3.2,3.5,1,1,1,1,"A"
+"2641","control","marriage",1,1,1,7,6,"traditional",6,4,4.4,5.75,3.75,"life",6,4,4.4,6,4.75,50,"female","white","heterosexual","bachelor's",7,6,15,6,6,4.4,4.4,5.75,6,3.75,4.75,"M"
+"3734","control","abortion",3,3,3,3,3,"equality",4,4,3.5,3.75,2.25,"choice",6,4,3.4,3.25,3.75,23,"female","black","heterosexual","bachelor's",6,2,11,6,4,3.4,3.5,3.25,3.75,3.75,2.25,"A"
+"5537","control","marriage",4,1,2.5,5,4,"equality",3,4,2.7,4,2,"choice",4,4,3.8,3.75,2.25,37,"male","white","heterosexual","some univ",4,3,12,3,4,2.7,3.8,4,3.75,2,2.25,"M"
+"5397","control","marriage",1,3,2,4,3,"equality",5,4,4.2,7,6.25,"choice",6,4,4,7,6.75,27,"female","white","heterosexual","adv degree",2,1,15,5,6,4.2,4,7,7,6.25,6.75,"M"
+"2739","control","abortion",1,1,1,3,2,"equality",2,4,2.2,1,1,"life",6,4,4.3,7,7,23,"male","hispanic","heterosexual","high school",1,4,12,6,2,4.3,2.2,7,1,7,1,"A"
+"2549","los","marriage",1,7,4,1,2,"equality",1,4,4,2,2.25,"choice",2,4,3.2,2,2.5,44,"male","other","heterosexual","adv degree",4,4,14,1,2,4,3.2,2,2,2.25,2.5,"M"
+"4790","control","abortion",2,5,3.5,4,4,"traditional",6,4,3.6,4.5,3.5,"life",6,4,3.4,5.5,5.5,64,"female","white","heterosexual","some high",4,4,13,6,6,3.4,3.6,5.5,4.5,5.5,3.5,"A"
+"2324","los","abortion",4,5,4.5,2,2,"equality",4,4,4.6,7,3.25,"choice",5,4,4.5,6,3,43,"female","white","heterosexual","two year",6,2,14,5,4,4.5,4.6,6,7,3,3.25,"A"
+"1937","los","marriage",5,6,5.5,3,2,"equality",4,4,3.6,2.5,2.5,"choice",3,4,3.1,1.5,1.75,32,"female","white","bisexual","some univ",4,3,13,4,3,3.6,3.1,2.5,1.5,2.5,1.75,"M"
+"3265","control","abortion",2,1,1.5,4,2,"equality",1,4,3.4,1,1,"choice",3,4,3.2,3,1.75,41,"male","white","heterosexual","bachelor's",3,3,13,3,1,3.2,3.4,3,1,1.75,1,"A"
+"3445","los","marriage",5,5,5,3,3,"equality",4,4,3.8,5.25,1.75,"choice",3,4,3.6,4,1.75,53,"male","white","homosexual","adv degree",1,2,14,4,3,3.8,3.6,5.25,4,1.75,1.75,"M"
+"3708","control","marriage",1,5,3,7,7,"traditional",6,4,2.2,5,5,"life",6,4,2.8,5,5,28,"male","white","heterosexual","some univ",4,5,12,6,6,2.2,2.8,5,5,5,5,"M"
+"4542","los","marriage",2,5,3.5,6,2,"traditional",6,6,6,2,2,"life",6,4,1,1,1,21,"female","white","heterosexual","high school",6,4,15,6,6,6,1,2,1,2,1,"M"
+"4640","los","abortion",7,7,7,1,2,"equality",6,4,3.8,6,3.25,"choice",2,4,3.3,2.25,1.25,23,"female","white","bisexual","some univ",1,3,10,2,6,3.3,3.8,2.25,6,1.25,3.25,"A"
+"3742","control","abortion",3,3,3,4,4,"equality",5,4,2.4,4,4,"choice",6,4,1.8,5.5,4.5,23,"female","asian","bisexual","some univ",1,3,11,6,5,1.8,2.4,5.5,4,4.5,4,"A"
+"2097","control","abortion",2,2,2,5,5,"equality",1,4,4,1,1,"life",1,4,3.8,1,1,74,"male","white","heterosexual","some univ",1,4,11,1,1,3.8,4,1,1,1,1,"A"
+"1465","los","marriage",4,6,5,1,2,"equality",5,4,4.4,6.75,4.25,"choice",2,4,4.2,5.25,3.25,36,"female","white","bisexual","adv degree",1,1,14,5,2,4.4,4.2,6.75,5.25,4.25,3.25,"M"
+"1023","control","marriage",1,1,1,4,1,"equality",6,4,3.9,5.75,2,"choice",6,4,3.9,6.75,2,40,"female","white","heterosexual","adv degree",6,4,14,6,6,3.9,3.9,5.75,6.75,2,2,"M"
+"4017","los","abortion",5,7,6,4,1,"equality",5,4,4,6,3.25,"choice",4,4,3.8,5.75,2.25,56,"female","white","heterosexual","adv degree",4,2,14,4,5,3.8,4,5.75,6,2.25,3.25,"A"
+"5738","control","marriage",5,2,3.5,5,5,"equality",3,4,3.5,1,1,"choice",3,4,3.6,1,1,39,"male","white","heterosexual","bachelor's",1,6,14,3,3,3.5,3.6,1,1,1,1,"M"
+"1910","control","marriage",1,1,1,6,5,"traditional",5,4,4.3,2.25,2.5,"life",3,4,4.3,1.75,2.5,55,"male","white","heterosexual","bachelor's",2,5,15,5,3,4.3,4.3,2.25,1.75,2.5,2.5,"M"
+"4826","los","abortion",7,7,7,1,1,"traditional",6,4,4,7,7,"life",6,4,4.6,7,7,28,"male","white","heterosexual","some univ",5,7,15,6,6,4.6,4,7,7,7,7,"A"
+"1045","control","marriage",1,1,1,6,6,"traditional",6,4,3.3,5,1,"life",6,4,4,7,1,35,"male","black","heterosexual","bachelor's",7,3,13,6,6,3.3,4,5,7,1,1,"M"
+"1480","los","abortion",5,5,5,3,2,"equality",1,4,4.3,5,2.25,"choice",1,4,3.9,5,2.25,56,"female","white","heterosexual","bachelor's",1,2,14,1,1,3.9,4.3,5,5,2.25,2.25,"A"
+"5735","los","marriage",7,7,7,1,1,"traditional",5,4,2.4,5.5,1.25,"life",6,4,3.5,5.75,1.25,21,"female","white","heterosexual","two year",6,4,13,5,6,2.4,3.5,5.5,5.75,1.25,1.25,"M"
+"1681","control","marriage",2,2,2,4,5,"equality",5,4,4,7,5,"choice",5,4,4.3,7,5,24,"male","white","bisexual","some univ",1,1,15,5,5,4,4.3,7,7,5,5,"M"
+"1788","control","abortion",1,1,1,4,5,"traditional",1,4,5.2,4.5,3.75,"life",3,4,5.3,4.25,4,42,"female","hispanic","heterosexual","high school",4,4,12,3,1,5.3,5.2,4.25,4.5,4,3.75,"A"
+"1171","control","marriage",2,2,2,4,3,"equality",3,4,3.4,1,2.5,"choice",3,4,3.4,1,3.75,33,"male","white","heterosexual","some univ",1,3,12,3,3,3.4,3.4,1,1,2.5,3.75,"M"
+"1932","los","marriage",5,6,5.5,2,6,"equality",6,4,3.5,2.5,2.5,"choice",3,4,3.2,2.25,2,39,"female","white","heterosexual","bachelor's",1,1,14,6,3,3.5,3.2,2.5,2.25,2.5,2,"M"
+"3744","control","abortion",2,1,1.5,4,2,"equality",6,4,4.3,6,1,"choice",5,4,4.2,5,1,47,"female","white","heterosexual","adv degree",2,4,13,5,6,4.2,4.3,5,6,1,1,"A"
+"3492","control","marriage",2,2,2,6,5,"equality",3,4,4.1,5.75,3.5,"choice",3,4,4,6,3.5,64,"female","white","heterosexual","adv degree",6,3,14,3,3,4.1,4,5.75,6,3.5,3.5,"M"
+"3018","control","abortion",1,1,1,4,4,"equality",6,4,5,6,2.75,"choice",6,4,5.1,6,3.25,58,"female","white","heterosexual","some univ",1,2,15,6,6,5.1,5,6,6,3.25,2.75,"A"
+"4963","control","marriage",1,2,1.5,5,4,"traditional",6,4,3.8,7,4,"life",5,4,4.1,7,4.75,28,"female","white","heterosexual","trade/apprentice",7,5,14,6,5,3.8,4.1,7,7,4,4.75,"M"
+"5258","los","abortion",6,6,6,4,4,"traditional",4,4,2.8,2,1.25,"choice",3,4,3,2,1,33,"female","white","heterosexual","bachelor's",1,6,13,3,4,3,2.8,2,2,1,1.25,"A"
+"5823","los","marriage",5,7,6,5,6,"traditional",6,4,4.2,1,1,"choice",1,4,3.8,1,1,22,"female","white","heterosexual","bachelor's",1,4,12,6,1,4.2,3.8,1,1,1,1,"M"
+"1485","control","abortion",2,2,2,5,5,"equality",6,4,2.4,4.75,1.75,"choice",6,4,2.5,4,2.5,26,"male","white","heterosexual","bachelor's",1,2,14,6,6,2.5,2.4,4,4.75,2.5,1.75,"A"
+"5942","los","marriage",6,6,6,3,4,"traditional",6,4,3.8,4,1,"choice",6,4,3.7,4.75,1,57,"female","black","heterosexual","some univ",2,4,13,6,6,3.8,3.7,4,4.75,1,1,"M"
+"2275","control","abortion",1,1,1,5,4,"traditional",5,4,4.4,3.75,6.5,"life",4,4,3.8,6.25,6.75,32,"male","white","heterosexual","bachelor's",7,6,14,4,5,3.8,4.4,6.25,3.75,6.75,6.5,"A"
+"5615","los","abortion",6,7,6.5,2,3,"equality",6,4,3.6,6.75,5,"choice",5,4,2.4,6,4.5,37,"female","black","homosexual","adv degree",1,1,14,5,6,2.4,3.6,6,6.75,4.5,5,"A"
+"5794","los","marriage",6,6,6,1,1,"equality",6,4,3.7,4.5,2,"choice",6,4,3.7,7,5,46,"female","asian","heterosexual","bachelor's",1,2,14,6,6,3.7,3.7,4.5,7,2,5,"M"
+"3088","control","abortion",1,1,1,4,2,"equality",6,4,3.3,5.25,1.75,"choice",4,4,2.6,4.75,2.25,37,"female","asian","heterosexual","bachelor's",2,2,14,4,6,2.6,3.3,4.75,5.25,2.25,1.75,"A"
+"5533","los","marriage",6,6,6,2,3,"equality",6,4,4.6,6,1.25,"choice",2,4,4,4.75,1.25,33,"female","white","heterosexual","adv degree",4,3,14,6,2,4.6,4,6,4.75,1.25,1.25,"M"
+"4720","control","abortion",1,1,1,6,5,"equality",6,4,4.5,6.5,3,"choice",6,4,4.2,6,3,60,"female","white","heterosexual","high school",1,1,14,6,6,4.2,4.5,6,6.5,3,3,"A"
+"1003","control","abortion",6,3,4.5,4,6,"equality",5,2,4.1,5,3.5,"choice",5,5,4.2,5.25,4,46,"male","white","heterosexual","two year",5,4,13,5,5,4.2,4.1,5.25,5,4,3.5,"A"
+"3410","los","marriage",5,7,6,2,2,"equality",6,4,3.2,4.25,1.25,"choice",6,4,3.8,3.5,1.25,55,"male","white","prefer not to answer","bachelor's",1,4,12,6,6,3.2,3.8,4.25,3.5,1.25,1.25,"M"
+"2753","los","abortion",4,4,4,4,4,"traditional",5,4,3.2,5,4.25,"choice",4,4,1.4,4.75,4.25,45,"male","asian","heterosexual","adv degree",4,5,13,4,5,1.4,3.2,4.75,5,4.25,4.25,"A"
+"3323","control","marriage",4,4,4,4,4,"equality",6,4,5,6,3,"choice",5,4,4.2,6,3,37,"female","white","homosexual","some univ",4,2,14,6,5,5,4.2,6,6,3,3,"M"
+"2080","los","abortion",6,6,6,2,2,"traditional",4,5,1,4,4,"life",5,1,1.4,4,4,26,"female","black","heterosexual","bachelor's",2,2,13,5,4,1.4,1,4,4,4,4,"A"
+"2791","control","marriage",2,1,1.5,6,6,"equality",6,4,4.6,6.75,5.5,"choice",6,4,5.2,7,5.5,35,"female","white","heterosexual","trade/apprentice",1,2,12,6,6,4.6,5.2,6.75,7,5.5,5.5,"M"
+"2842","los","abortion",4,6,5,4,6,"traditional",6,4,4,6,2,"life",6,4,4.6,6,4.75,53,"female","white","heterosexual","high school",4,6,13,6,6,4.6,4,6,6,4.75,2,"A"
+"5994","los","marriage",7,7,7,3,1,"equality",2,4,3.9,1.5,1.5,"choice",6,4,3.4,1.25,2,36,"male","white","heterosexual","high school",5,2,13,2,6,3.9,3.4,1.5,1.25,1.5,2,"M"
+"2699","control","abortion",2,5,3.5,7,4,"traditional",5,4,4.1,3.25,4.5,"choice",4,4,4.1,3.5,4.5,24,"female","white","heterosexual","some univ",4,4,13,4,5,4.1,4.1,3.5,3.25,4.5,4.5,"A"
+"3652","control","marriage",4,3,3.5,5,4,"equality",4,3,4.1,3.5,4.75,"choice",5,4,4.1,4,4.75,34,"male","white","heterosexual","bachelor's",5,4,13,4,5,4.1,4.1,3.5,4,4.75,4.75,"M"
+"5707","control","abortion",1,1,1,5,5,"equality",2,4,3.3,4,1,"choice",4,4,3.7,3.5,1.25,19,"male","white","heterosexual","high school",5,6,14,4,2,3.7,3.3,3.5,4,1.25,1,"A"
+"2416","los","marriage",5,6,5.5,4,3,"traditional",3,4,3.9,2,1,"life",2,4,4,2.5,1,42,"female","white","heterosexual","bachelor's",5,5,13,3,2,3.9,4,2,2.5,1,1,"M"
+"3404","control","abortion",4,3,3.5,4,4,"equality",4,4,4.7,3,4.25,"life",3,4,4.8,3.25,3.75,28,"female","asian","heterosexual","bachelor's",3,2,11,3,4,4.8,4.7,3.25,3,3.75,4.25,"A"
+"1253","los","marriage",5,7,6,2,2,"equality",6,4,4,4,2.5,"choice",6,4,4.6,5.25,2,42,"female","white","heterosexual","some univ",4,3,10,6,6,4,4.6,4,5.25,2.5,2,"M"
+"5209","los","marriage",6,6,6,4,4,"equality",6,4,4,4.75,2.25,"choice",6,4,4.1,4.75,1.75,55,"female","white","heterosexual","bachelor's",3,2,13,6,6,4,4.1,4.75,4.75,2.25,1.75,"M"
+"1342","los","abortion",3,3,3,4,3,"equality",2,4,4,4.5,4.5,"life",3,4,4.4,4.5,4.5,19,"female","black","heterosexual","some univ",5,4,12,3,2,4.4,4,4.5,4.5,4.5,4.5,"A"
+"4238","control","marriage",2,1,1.5,5,5,"traditional",6,4,4,7,2.5,"life",6,4,3.4,7,2.5,54,"male","white","heterosexual","some univ",6,6,14,6,6,4,3.4,7,7,2.5,2.5,"M"
+"2421","los","abortion",6,6,6,1,1,"equality",6,4,3.8,3,3,"choice",6,4,3.6,3.5,3,36,"male","white","heterosexual","adv degree",1,1,15,6,6,3.6,3.8,3.5,3,3,3,"A"
+"4362","control","marriage",1,1,1,4,1,"equality",2,4,3.8,1.5,1,"life",3,4,4,2.75,1.75,27,"female","white","heterosexual","some univ",2,5,15,2,3,3.8,4,1.5,2.75,1,1.75,"M"
+"5676","control","abortion",1,1,1,5,5,"traditional",6,4,4,3.5,1,"life",6,4,3.4,6.25,1,41,"female","white","heterosexual","adv degree",7,4,12,6,6,3.4,4,6.25,3.5,1,1,"A"
+"1131","control","marriage",1,1,1,4,5,"equality",4,4,4.2,4,3,"choice",3,4,3.8,4,2.5,29,"male","white","heterosexual","adv degree",1,2,13,4,3,4.2,3.8,4,4,3,2.5,"M"
+"5705","los","abortion",4,4,4,4,4,"equality",4,5,4,4.25,4.5,"life",6,3,1.8,4.5,4.5,26,"female","other","bisexual","some univ",4,4,12,6,4,1.8,4,4.5,4.25,4.5,4.5,"A"
+"5886","control","marriage",3,4,3.5,4,5,"equality",5,4,3.6,5.25,2.5,"choice",3,4,3.3,4.5,2,25,"male","white","heterosexual","bachelor's",2,3,12,5,3,3.6,3.3,5.25,4.5,2.5,2,"M"
+"1786","los","marriage",5,5,5,2,2,"equality",5,4,3.9,5,2.5,"choice",6,4,4.4,5.25,2.25,47,"female","white","heterosexual","bachelor's",1,2,13,5,6,3.9,4.4,5,5.25,2.5,2.25,"M"
+"2643","control","abortion",2,1,1.5,6,5,"equality",2,4,3.5,1.25,1.25,"choice",6,4,4.6,3.25,1.5,35,"female","white","heterosexual","bachelor's",1,6,13,6,2,4.6,3.5,3.25,1.25,1.5,1.25,"A"
+"1414","los","marriage",4,6,5,4,2,"equality",5,5,4.5,4.75,1.75,"choice",6,4,4,5,1.75,64,"female","white","heterosexual","bachelor's",3,5,13,5,6,4.5,4,4.75,5,1.75,1.75,"M"
+"4481","los","abortion",5,5,5,2,5,"equality",6,4,3.9,5.75,1,"choice",6,4,4.3,5.5,1,31,"male","white","heterosexual","some univ",1,4,13,6,6,4.3,3.9,5.5,5.75,1,1,"A"
+"4615","control","abortion",1,1,1,4,4,"equality",2,4,2.8,5.25,2.25,"choice",2,4,2.3,5,2.75,28,"female","white","homosexual","two year",2,2,13,2,2,2.3,2.8,5,5.25,2.75,2.25,"A"
+"2537","los","marriage",5,5,5,3,4,"equality",4,4,4,4.75,3,"life",4,4,3.6,5,3,35,"female","white","heterosexual","high school",1,3,13,4,4,4,3.6,4.75,5,3,3,"M"
+"3163","control","abortion",2,2,2,4,4,"equality",4,4,3.9,4,4,"choice",4,4,3.9,4.25,4,42,"male","white","heterosexual","adv degree",1,1,14,4,4,3.9,3.9,4.25,4,4,4,"A"
+"3496","los","marriage",4,5,4.5,1,4,"equality",6,4,4,1.75,1.75,"choice",6,4,4,1.75,1.75,52,"female","white","heterosexual","two year",1,4,9,6,6,4,4,1.75,1.75,1.75,1.75,"M"
+"3745","control","marriage",2,1,1.5,5,4,"equality",5,4,2.5,6,4.25,"choice",6,4,3.3,6.75,5.5,28,"female","white","heterosexual","bachelor's",1,1,15,5,6,2.5,3.3,6,6.75,4.25,5.5,"M"
+"1289","control","abortion",1,6,3.5,2,4,"traditional",5,4,3.7,4,1.75,"life",6,4,6.4,6.25,1,25,"female","hispanic","heterosexual","high school",4,7,14,6,5,6.4,3.7,6.25,4,1,1.75,"A"
+"3447","control","abortion",3,2,2.5,5,5,"equality",4,4,3.7,6,3.5,"choice",3,4,4.2,5,3.5,18,"male","white","heterosexual","high school",2,2,13,3,4,4.2,3.7,5,6,3.5,3.5,"A"
+"5653","control","abortion",4,1,2.5,4,4,"equality",3,4,3.4,3,4,"choice",3,4,2.9,3,1.75,22,"prefer not to answer","white","heterosexual","bachelor's",1,2,13,3,3,2.9,3.4,3,3,1.75,4,"A"
+"4088","los","marriage",4,7,5.5,1,1,"traditional",6,4,3.7,7,1,"life",6,4,4,7,1,34,"female","white","heterosexual","bachelor's",6,7,15,6,6,3.7,4,7,7,1,1,"M"
+"4536","control","abortion",2,5,3.5,3,2,"equality",2,4,4.2,1.5,2.5,"choice",4,4,4,2,2.75,27,"male","white","heterosexual","high school",1,5,15,4,2,4,4.2,2,1.5,2.75,2.5,"A"
+"5245","los","marriage",6,6,6,4,5,"traditional",5,4,5.7,6,4.5,"life",5,4,5.3,5.5,3.75,24,"male","white","heterosexual","some univ",4,5,13,5,5,5.7,5.3,6,5.5,4.5,3.75,"M"
+"1783","control","marriage",2,1,1.5,7,5,"equality",2,4,4.1,1,1,"choice",4,4,4.1,4,1,52,"female","white","heterosexual","bachelor's",3,5,13,2,4,4.1,4.1,1,4,1,1,"M"
+"5829","los","abortion",7,7,7,3,2,"traditional",6,4,4.4,6,3,"choice",6,4,4.1,5.75,4.75,53,"female","white","heterosexual","high school",4,3,14,6,6,4.1,4.4,5.75,6,4.75,3,"A"
+"1971","control","marriage",5,1,3,4,4,"equality",4,4,4.4,4.75,2.25,"choice",3,4,4.5,4.25,1.25,27,"female","white","heterosexual","some univ",1,4,14,4,3,4.4,4.5,4.75,4.25,2.25,1.25,"M"
+"2697","control","abortion",1,1,1,1,1,"equality",6,4,4.1,5.5,2.25,"choice",6,4,2.9,5.25,2.5,41,"male","white","heterosexual","bachelor's",1,2,13,6,6,2.9,4.1,5.25,5.5,2.5,2.25,"A"
+"1372","los","marriage",1,1,1,7,6,"equality",6,4,4.4,4.75,4.75,"choice",2,4,4,1.75,5.25,52,"female","white","homosexual","bachelor's",1,1,13,6,2,4.4,4,4.75,1.75,4.75,5.25,"M"
+"3355","control","abortion",4,1,2.5,4,3,"traditional",4,4,4.4,3,1,"life",3,4,4.3,3.5,1.75,48,"female","white","heterosexual","bachelor's",2,6,14,3,4,4.3,4.4,3.5,3,1.75,1,"A"
+"3349","los","abortion",2,2,2,6,2,"traditional",6,4,3.7,3.25,5.25,"life",4,4,4.4,4.5,4.75,29,"male","white","heterosexual","trade/apprentice",3,3,12,4,6,4.4,3.7,4.5,3.25,4.75,5.25,"A"
+"4553","los","marriage",2,6,4,4,4,"equality",4,4,3.6,2.5,3,"choice",5,4,3.7,3,2.75,22,"male","asian","heterosexual","bachelor's",1,2,12,4,5,3.6,3.7,2.5,3,3,2.75,"M"
+"5466","control","abortion",1,1,1,3,2,"equality",6,4,3.6,7,3.25,"choice",6,4,3.9,7,3.5,30,"female","white","heterosexual","bachelor's",1,2,14,6,6,3.9,3.6,7,7,3.5,3.25,"A"
+"1322","los","marriage",3,5,4,3,4,"traditional",6,4,3.6,6.25,3.75,"life",5,4,3.2,5.75,3.5,35,"female","white","heterosexual","two year",7,4,14,6,5,3.6,3.2,6.25,5.75,3.75,3.5,"M"
+"3641","control","abortion",3,4,3.5,3,5,"equality",4,4,3.7,4.25,3.25,"choice",4,4,4.6,3.75,3.5,19,"male","asian","heterosexual","some univ",3,4,12,4,4,4.6,3.7,3.75,4.25,3.5,3.25,"A"
+"3136","control","marriage",1,1,1,4,4,"equality",6,4,3.7,4,3,"choice",5,4,4.2,4.75,2.5,30,"male","white","heterosexual","bachelor's",1,2,13,6,5,3.7,4.2,4,4.75,3,2.5,"M"
+"2938","los","abortion",6,6,6,2,2,"equality",6,4,5.4,7,1,"choice",6,4,4.7,6.25,1,31,"female","white","bisexual","some univ",1,3,14,6,6,4.7,5.4,6.25,7,1,1,"A"
+"3893","control","marriage",4,6,5,6,6,"traditional",6,4,4.9,5.5,6,"life",6,4,5.4,4.75,4.5,30,"female","white","homosexual","bachelor's",6,4,13,6,6,4.9,5.4,5.5,4.75,6,4.5,"M"
+"3109","los","abortion",7,7,7,1,2,"equality",6,4,4,7,3.5,"choice",6,4,4.4,7,5.75,21,"female","black","heterosexual","some univ",7,1,15,6,6,4.4,4,7,7,5.75,3.5,"A"

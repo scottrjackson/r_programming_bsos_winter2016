@@ -39,7 +39,7 @@ ggplot(myris.cast, aes(x = Length, Width)) + geom_point() + xlab("length of the 
 ## legend
 
 ```{r}
-myris.scatter <- ggplot(myris.cast, aes(x = Length, Width)) + geom_point(aes(color = Species))
+myris.scatter <- ggplot(myris.cast, aes(x = Length, Width)) + geom_point(aes(color = Species), size = 4)
 myris.scatter
 myris.scatter + theme(legend.position = "top")
 myris.scatter + theme(legend.position = "none")
@@ -67,8 +67,7 @@ umd.red <- rgb(224, 58, 62, maxColorValue = 255)
 umd.gold <- rgb(255, 225, 79, maxColorValue = 255)
 umd.black <- rgb(0, 0, 0, maxColorValue = 255)
 
-myris.scatter + scale_color_manual(values = c(umd.red, umd.gold, umd.black)) + theme_minimal()
- # put theme_minimal() (or other pre-set themes) before your other theme() calls
+myris.scatter + scale_color_manual(values = c(umd.red, umd.gold, umd.black))
 
 myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal()
 
@@ -76,10 +75,29 @@ myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal()
 
 ## themes
 
+Check out this page for LOTS of options: http://docs.ggplot2.org/current/theme.html
+
+```{r}
+myris.scatter
++ scale_color_brewer(palette = "Set1") + theme_minimal()
+ # put theme_minimal() (or other pre-set themes) before your other theme() calls
+myris.scatter + scale_color_brewer(palette = "Set1") + theme_minimal() + theme(legend.position = "none")
+myris.scatter + scale_color_brewer(palette = "Set1") + theme(legend.position = "none") + theme_minimal()
 
 
-## position control
-## overplotting
+```
+
+
+## "overplotting" and position control
+
+```{r}
+los.fusion <- read.csv("../scottdata/los_fusion.csv")
+los.fusion$firstvalue.new<-ifelse(los.fusion$firstvalue=="abortion","A","M")
+
+ggplot(los.fusion, aes(x = firstval_fusion, y = secondval_fusion)) + geom_text(aes(label = firstvalue.new))
+
+```
+
 ## additional layers
 ## annotation
 
