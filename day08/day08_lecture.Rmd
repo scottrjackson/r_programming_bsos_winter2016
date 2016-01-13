@@ -109,14 +109,94 @@ length(data.sets) <- 5
 for(i in 1:5) {
   data.sets[[i]] <- data.frame(mvrnorm(n = 1000, mu = c(mu.sigmas[i, "mean1"], mu.sigmas[i, "mean2"]), Sigma = matrix(c(1, mu.sigmas[i, "corr"], mu.sigmas[i, "corr"], 1), ncol = 2)))
   data.sets[[i]]$set <- i
-  write.csv(data.sets[[i]], file = paste("sampledata", i, ".csv", sep = ""))
+  write.csv(data.sets[[i]], file = paste("sampledata", i, ".csv", sep = ""), row.names = FALSE)
 }
 
+N <- 5
+mydataframes <- list()
+length(mydataframes) <- N
+for(set.num in 1:N) {
+  mydataframes[[set.num]] <- read.csv(paste("sampledata", set.num, ".csv", sep = ""))
+}
+
+library(dplyr)
+mydata <- rbind_all(mydataframes)  
+
+my.results <- data.frame(correlation = rep(NA, 5), t = NA, df = NA, p = NA)
+for(counter in c(1, 5, 3, 4, 2)) {
+  my.cor.test <- cor.test(mydata$X1[mydata$set == counter], mydata$X2[mydata$set == counter])
+  mycor <- my.cor.test$estimate
+  myt <- my.cor.test$statistic
+  mydf <- my.cor.test$parameter
+  mypval <- my.cor.test$p.value
+  my.results[counter, ] <- c(mycor, myt, mydf, mypval)
+}
+
+my.ttest.results <- data.frame(mean1 = rep(NA, 5), mean2 = NA, t = NA, df = NA, p = NA)
+for(counter in 1:5) {
+  this.ttest <- t.test(mydata$X1[mydata$set == counter], mydata$X2[mydata$set == counter])
+  this.mean1 <- this.ttest$estimate[1]
+  this.mean2 <- this.ttest$estimate[2]
+  this.t <- this.ttest$statistic
+  this.df <- this.ttest$parameter
+  this.pval <- this.ttest$p.value
+  my.ttest.results[counter, ] <- c(this.mean1, this.mean2, this.t, this.df, this.pval)
+}
+
+```
+
+# simulating data
+
+```{r}
+n.sim <- 10000
+sample.n <- 100
+null.results <- data.frame(iteration = 1:n.sim, p = NA)
+null.cortable <- matrix(c(1, 0, 0, 1), ncol = 2)
+null.cortable
+for(counter in 1:n.sim) {
+  this.data <- data.frame(mvrnorm(sample.n, mu = c(0, 0), Sigma = null.cortable))
+  this.cortest <- cor.test(this.data$X1, this.data$X2)
+  null.results[counter, "p"] <- this.cortest$p.value
+}
+null.results$sig <- ifelse(null.results$p < .05, TRUE, FALSE)
+
+n.sim <- 10000
+sample.n <- 80
+sim.results <- data.frame(iteration = 1:n.sim, p = NA, cor = NA)
+sim.cortable <- matrix(c(1, .2, .2, 1), ncol = 2)
+sim.cortable
+for(counter in 1:n.sim) {
+  this.data <- data.frame(mvrnorm(sample.n, mu = c(0, 0), Sigma = sim.cortable))
+  this.cortest <- cor.test(this.data$X1, this.data$X2)
+  sim.results[counter, "p"] <- this.cortest$p.value
+  sim.results[counter, "corr"] <- this.cortest$estimate
+}
+sim.results$sig <- ifelse(sim.results$p < .05, TRUE, FALSE)
+mean(sim.results$sig)
+mean(sim.results$corr[sim.results$sig])
 
 
 ```
 
 
-# Loops practice
+# Loop control
 
+```{r}
+n.sim <- 10
+sample.n <- 80
+sim.results <- data.frame(iteration = 1:n.sim, p = NA, cor = NA)
+sim.cortable <- matrix(c(1, .2, .2, 1), ncol = 2)
+sim.cortable
+for(counter in 1:n.sim) {
+  if(!counter %in% c(5, 8)) { next() }
+  this.data <- data.frame(mvrnorm(sample.n, mu = c(0, 0), Sigma = sim.cortable))
+  this.cortest <- cor.test(this.data$X1, this.data$X2)
+  sim.results[counter, "p"] <- this.cortest$p.value
+  sim.results[counter, "corr"] <- this.cortest$estimate
+}
+sim.results$sig <- ifelse(sim.results$p < .05, TRUE, FALSE)
+mean(sim.results$sig)
+mean(sim.results$corr[sim.results$sig])
+
+```
 
