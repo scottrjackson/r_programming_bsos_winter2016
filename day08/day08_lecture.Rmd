@@ -143,6 +143,19 @@ for(counter in 1:5) {
   my.ttest.results[counter, ] <- c(this.mean1, this.mean2, this.t, this.df, this.pval)
 }
 
+get.ttest.results <- function(data, x, y) {
+  this.ttest <- t.test(data[[x]], data[[y]])
+  this.mean1 <- this.ttest$estimate[1]
+  this.mean2 <- this.ttest$estimate[2]
+  this.t <- this.ttest$statistic
+  this.df <- this.ttest$parameter
+  this.pval <- this.ttest$p.value
+  my.ttest.results <- data.frame(this.mean1, this.mean2, this.t, this.df, this.pval)
+  my.ttest.results
+}
+get.ttest.results2 <- group_by(mydata, set) %>% do(get.ttest.results(., "X1", "X2"))
+
+
 ```
 
 # simulating data
