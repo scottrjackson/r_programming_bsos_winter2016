@@ -244,6 +244,8 @@ group_by(mysleep.wide2, group) %>% do(get.ttest.results(., "pre", "post"))
 
 ```{r}
 library(tidyr)
+library(dplyr)
+library(reshape2)
 myris <- iris
 myris$plant <- 1:nrow(myris)
 myris <- gather(myris, myvariable, cm, 1:4)
@@ -251,10 +253,89 @@ myris <- separate(myris, myvariable, c("part", "dimension"), sep = "\\.")
 myris$part <- as.factor(myris$part)
 myris$dimension <- as.factor(myris$dimension)
 
-myris.cast <- dcast(myris, ... ~ dimension, value.var = "cm")
+# why not make this a function, dummy?
+clean.iris <- function(iris = iris) {
+  library(tidyr)
+  myris <- iris
+  myris$plant <- 1:nrow(myris)
+  myris <- gather(myris, myvariable, cm, 1:4)
+  myris <- separate(myris, myvariable, c("part", "dimension"), sep = "\\.")
+  myris$part <- as.factor(myris$part)
+  myris$dimension <- as.factor(myris$dimension)
+  myris
+}
+
+myris2 <- clean.iris(iris)
+
+myris.cast <- dcast(myris2, ... ~ dimension, value.var = "cm")
 head(myris.cast)
 
+lm.myris <- lm(Length ~ Width, data = myris.cast)
+summary(lm.myris)
 
+lm.results1 <- data.frame(expand.grid(levels(myris.cast$Species), levels(myris.cast$part)))
+lm.results1$est <- NA
+lm.results1$r.squared <- NA
+
+est <- summary(lm.myris)$coefficients["Width", "Estimate"]
+r.squared <- summary(lm.myris)$r.squared
+
+species <- levels(myris.cast$Species)
+parts <- levels(myris.cast$part)
+for(this.species in species) {
+
+  for(this.part in parts) {
+  
+    print(paste(this.part,this.species))
+    
+    this.lm <- lm(Length ~ Width, data = myris.cast[myris.cast$Species == this.species & myris.cast$part == this.part, ])
+    this.est <- summary(this.lm)$coefficients["Width", "Estimate"]
+    this.r.squared <- summary(this.lm)$r.squared
+    lm.results1[lm.results1$Var1 == this.species & lm.results1$Var2 == this.part, 3:4] <- c(this.est, this.r.squared)
+    
+  }
+
+}
+
+lw.lm.results <- function(this.data) {
+  this.lm <- lm(Length ~ Width, data = this.data)
+  this.est <- summary(this.lm)$coefficients["Width", "Estimate"]
+  this.r.squared <- summary(this.lm)$r.squared
+  results <- data.frame(est = this.est, r.squared = this.r.squared)
+  results
+}
+
+group_by(myris.cast, Species, part) %>% do(lw.lm.results(.))
+
+better.lm.results <- function(this.data, x, y) {
+  this.formula <- as.formula(paste(y, "~", x))
+  this.lm <- lm(this.formula, data = this.data)
+  this.est <- summary(this.lm)$coefficients[x, "Estimate"]
+  this.r.squared <- summary(this.lm)$r.squared
+  results <- data.frame(est = this.est, r.squared = this.r.squared)
+  results
+}
+
+group_by(myris.cast, Species, part) %>% do(better.lm.results(., "Width", "Length"))
+
+myris.renamed <- myris.cast
+colnames(myris.renamed) <- c("species", "flower", "part", "height", "weight")
+
+group_by(myris.renamed, species, part) %>% do(better.lm.results(., "height", "weight"))
+
+# get() function
+x <- 1:10
+"x"
+x
+get("x")
+
+t.test(myris.cast$Width, myris.cast$Length)
+
+get("t.test")(myris.cast$Width, myris.cast$Length)
+
+tests.I.want <- c("t.test", "cor.test", "wilcox.test")
+
+get(tests.I.want[3])(myris.cast$Width, myris.cast$Length)
 
 ```
 
@@ -289,7 +370,7 @@ double.max <- function(x) {
     - runs all code in another file
 
 ```{r}
-source("day9/anotherfunction.R")
+# source("day9/anotherfunction.R")
 ```
 
   - package!
