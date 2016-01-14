@@ -26,7 +26,6 @@ my.function <- function(arg1, arg2, ...) {
 
 ```
 
-  - "anonymous" functions = "one-use" functions
   
 ```{r}
 library(reshape2)
@@ -36,58 +35,46 @@ levels(mysleep$group) <- c("pre", "post")
 mysleep.wide <- dcast(mysleep, ID ~ group, value.var = "extra")
 mysleep.wide
 
-double.max <- function(x) {
-  output <- max(x) * 2  
+double.max <- function(arg1) {
+  output <- max(arg1) * 2  
   output
 }
 
+# remember that R can look "up" into environments
+arg1 <- 40:45
+
+bad.double.max <- function(x) { # not a good idea
+  output <- max(arg1) * 2  
+  output
+}
+
+bad.double.max(y)
+
 double.max <- function(x) {
-  max(x) * 2  
+  max(x) * 2  # fine, because it's a value
+}
+
+bad.double.max2 <- function(x) {
+  output <- max(x) * 2  # not returning a value
 }
 
 #double.max <- function(x) { max(x) * 2 }
 #double.max <- function(x) max(x) * 2 
-
-
-double.max(1:10)
-
-mysleep.wide$newcol <- apply(mysleep.wide[, 2:3], 1, double.max)
-mysleep.wide
-
-# anonymous
-mysleep.wide$newcol2 <- apply(mysleep.wide[, 2:3], 1, function(x) { max(x) * 2 })
-mysleep.wide
-
-# dplyr
-mysleep.wide <- 
-  mysleep.wide %>%
-  rowwise() %>%
-  mutate(newcol3 = double.max(c(pre, post))) # or newcol3 = max(pre, post) * 2
-mysleep.wide
-
-# dplyr with melt (good for lots of columns)
-mysleep.wide %>%
-  melt(measure.vars = 2:3) %>%
-  group_by(ID) %>%
-  mutate(newcol4 = double.max(value)) %>%
-  dcast(ID + newcol + newcol2 + newcol3 + newcol4 ~ variable, value.var = "value")
-
-
 ```
+
 
 
 # Vectorization overview
   - sometimes faster (not always)
   - sometimes easier to think about (not always)
   - split-apply-combine
+  - "anonymous" functions = "one-use" functions
 
 ```{r}
 x <- 1:10
 
 x * 3
-
 ```
-
 
 # The `apply` family
 
@@ -105,6 +92,48 @@ colnames(minpair)
 
 minpair$allmean <- apply(minpair[, 10:17], MARGIN = 1, FUN = mean)
 head(minpair)
+
+double.max(1:10)
+
+mysleep.wide$newcol <- apply(mysleep.wide[, 2:3], 1, double.max)
+mysleep.wide
+
+# anonymous
+mysleep.wide$newcol2 <- apply(mysleep.wide[, 2:3], 1, function(x) { max(x) * 2 })
+mysleep.wide
+
+mysleep.wide$gains <- apply(mysleep.wide[, 2:3], 1, function(x) { x[2] - x[1] })
+mysleep.wide
+
+mysleep.wide$gains.weird <- apply(mysleep.wide[, 2:3], 1, function(y, z) { y[2] - z[1] })
+mysleep.wide
+
+z <- 2
+mysleep.wide$gains.weird <- apply(mysleep.wide[, 2:3], 1, function(y, z) { y[2] - z[1] }, z = z)
+mysleep.wide
+
+mysleep.wide$post[c(3, 5, 7)] <- NA
+
+apply(mysleep.wide[, 2:3], 1, mean, na.rm = TRUE)
+
+# dplyr
+mysleep.wide <- 
+  mysleep.wide %>%
+  rowwise() %>%
+  mutate(newcol3 = double.max(c(pre, post))) # or newcol3 = max(pre, post) * 2
+mysleep.wide
+
+mysleep.wide <- mutate(mysleep.wide, newcol3 = double.max(c(pre, post)))
+
+# dplyr with melt (good for lots of columns)
+mysleep.wide %>%
+  melt(measure.vars = 2:3) %>%
+  group_by(ID) %>%
+  mutate(newcol4 = double.max(value)) %>%
+  dcast(ID + newcol + newcol2 + newcol3 + newcol4 ~ variable, value.var = "value")
+
+
+```
 
 ```
 
@@ -126,7 +155,7 @@ head(minpair)
   - returns a vector
   - usually what you want instead of `lapply`
 
-# A better way: `plyr` and `dplyr`
+# More general solutions: `plyr` and `dplyr`
   - best for data frames
   
 ## `plyr`
@@ -188,9 +217,10 @@ for(counter in 1:5) {
   this.pval <- this.ttest$p.value
   my.ttest.results[counter, ] <- c(this.mean1, this.mean2, this.t, this.df, this.pval)
 }
+my.ttest.results
 
-get.ttest.results <- function(data, x, y) {
-  this.ttest <- t.test(data[[x]], data[[y]])
+get.ttest.results <- function(data, var1, var2) {
+  this.ttest <- t.test(data[[var1]], data[[var2]])
   this.mean1 <- this.ttest$estimate[1]
   this.mean2 <- this.ttest$estimate[2]
   this.t <- this.ttest$statistic
@@ -199,9 +229,35 @@ get.ttest.results <- function(data, x, y) {
   my.ttest.results <- data.frame(this.mean1, this.mean2, this.t, this.df, this.pval)
   my.ttest.results
 }
-get.ttest.results2 <- group_by(mydata, set) %>% do(get.ttest.results(., "X1", "X2"))
+
+my.ttest.results2 <- group_by(mydata, set) %>% do(get.ttest.results(., "X1", "X2"))
+
+mysleep.wide2 <- mysleep.wide[, 1:3]
+mysleep.wide2$group <- rep(c(1, 2), each = 5)
+
+group_by(mysleep.wide2, group) %>% do(get.ttest.results(., "pre", "post"))
+
 
 ```
+
+# Practice
+
+```{r}
+library(tidyr)
+myris <- iris
+myris$plant <- 1:nrow(myris)
+myris <- gather(myris, myvariable, cm, 1:4)
+myris <- separate(myris, myvariable, c("part", "dimension"), sep = "\\.")
+myris$part <- as.factor(myris$part)
+myris$dimension <- as.factor(myris$dimension)
+
+myris.cast <- dcast(myris, ... ~ dimension, value.var = "cm")
+head(myris.cast)
+
+
+
+```
+
 
 # More stuff on functions
 
