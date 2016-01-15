@@ -1,0 +1,421 @@
+---
+title: "Day 9 Lecture"
+output: html_document
+---
+
+# Outline
+  - Debugging
+  - Some fun links
+  - "Free for all"
+  - Strings
+  
+# Debugging
+  - run as a non-function
+  - insert "test" code
+  - use `browser()`, `debug()`, and `undebug()`
+  
+```{r}
+my.analysis <- function() {
+  library(dplyr)
+  if(require(mice)) {
+    print("run mice code")
+  } else {
+    print("run some alternative code")
+  }   
+}
+
+my.analysis2 <- function() {
+  library(dplyr)
+  if(library(mice)) {  # throws an error
+    print("run mice code")
+  } else {
+    print("run some alternative code")
+  }   
+}
+
+
+mysleep <- sleep
+
+my.pvals.v1 <- function(data) {
+  test.results <- t.test(extra ~ group, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output
+}
+
+my.pvals.v1(mysleep)
+mysleep2 <- mysleep[-c(3, 17), ]
+my.pvals.v1(mysleep2)
+mysleep3 <- mysleep
+colnames(mysleep3) <- c("time.sleep", "condition", "subject")
+my.pvals.v1(mysleep3)
+
+my.pvals.v2 <- function(data, DV, factor) {
+  test.results <- t.test(DV ~ factor, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output
+}
+
+my.pvals.v2(mysleep3, DV = "time.sleep", factor = "condition")
+
+
+
+```
+
+## "fake function" debugging
+
+```{r}
+my.pvals.v2(mysleep3, DV = "time.sleep", factor = "condition")
+
+my.pvals.v2 <- function(data, DV, factor) {
+  
+  data <- mysleep3
+  DV <- "time.sleep"
+  factor <- "condition"
+  
+  test.results <- t.test(DV ~ factor, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output
+  
+  
+  
+}
+
+
+
+```
+
+## insert "print" statements
+
+
+```{r}
+my.pvals.v2(mysleep3, DV = "time.sleep", factor = "condition")
+
+my.pvals.v2 <- function(data, DV, factor) {
+  print(DV)
+  test.results <- t.test(DV ~ factor, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output
+  
+  
+  
+}
+
+
+```
+
+## with debugging utilities
+  - `browser()`
+  - `debug()`, `undebug()`
+
+```{r}
+my.pvals.v2(mysleep3, DV = "time.sleep", factor = "condition")
+
+my.pvals.v2 <- function(data, DV, factor) {
+  #browser()
+  test.results <- t.test(DV ~ factor, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output  
+}
+
+debug(my.pvals.v2)
+undebug(my.pvals.v2)
+
+my.pvals.v3 <- function(data, my.formula) {
+  #browser()
+  test.results <- t.test(my.formula, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output  
+}
+
+my.pvals.v3(mysleep3, time.sleep ~ condition)
+
+my.pvals.v4 <- function(data, DV, factor) {
+  formula.string <- paste(DV, "~", factor)
+  my.formula <- as.formula(formula.string)
+  test.results <- t.test(my.formula, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output  
+}
+
+my.pvals.v4(mysleep3, DV = "time.sleep", factor = "condition")
+
+
+```
+
+## dealing with user error
+
+``` {r}
+my.pvals.v4 <- function(data, DV, factor) {
+  if(!is.data.frame(data)) {
+    stop("Please supply a data frame, dear user") # can use warning() as well, does not throw error
+  }
+  formula.string <- paste(DV, "~", factor)
+  my.formula <- as.formula(formula.string)
+  test.results <- t.test(my.formula, data = data)
+  pval <- test.results$p.value
+  if (pval < .05) {
+    output <- "p < .05, significant, thank god"
+  } else {
+    output <- paste("dammit, p is =", round(pval, 3))
+  }
+  output  
+}
+
+my.pvals.v4(as.matrix(mysleep3), DV = "time.sleep", factor = "condition")
+
+
+```
+
+# Some links
+
+  - http://blog.revolutionanalytics.com/2016/01/microsoft-r-open.html
+  - https://cran.r-project.org/web/packages/xkcd/
+  - http://blog.revolutionanalytics.com/2016/01/avoid-overlapping-labels-in-ggplot2-charts.html
+
+# Strings
+
+  - regular expressions
+  - grep, grepl, gsub
+  - strsplit
+  - colsplit
+
+## Regular expressions
+
+  - string *matching*
+  - can match literal strings or more abstract *patterns*
+  - see ?regex for help
+  - regular expressions are NOT unique to R, so look for tips elsewhere, too
+  - in R strings, `\` is the "escape" character, and for special regex expressions you usually need to double-escape (see examples)
+  
+Some handy characters to know:
+  - `+` = match 1 or more of the previous character
+  - `*` = match 0 or more of the previous character
+  - `?` = the preceding item is optional (i.e., match 0 or 1 of the previous character). `?` appended to a repetition operator makes it "not greedy"
+  - `[ ]` = match 1 of the set of things inside the bracket
+  - `\w` = match a "word" character (i.e., letters and numbers).  NOTE: you need to double-escape this and the rest of the slashes below usually, like `\\w`
+  - `\d` = match digits
+  - `\s` = match a space character
+  - capital-letter versions of the above (`\W`, `\D`, `\S`) are the *negations* of those
+  - `\t` = match a "tab" character
+  - `\n` = match a "newline" character
+  - `^` = the "beginning edge" of a string
+  - `$` = the "ending edge" of a string
+  - {n} = the preceding character is matched n times
+
+### basic matching
+
+```{r}
+response.types <- c("(1) strong dispreference", "(2) mild dispreference", "(3) no preference", "(4) mild preference", "(5) strong preference", "(9) don't know")
+set.seed(89)
+stringdata <- data.frame(ID = rep(paste("subject", 1:100), each = 4), 
+                         condition = rep(c("small_slow", "small_fast", 
+                                           "big_slow", "big_fast"), 100),
+                         condition2 = rep(c("small.slow", "small.fast", 
+                                           "big.slow", "big.fast"), 100),
+                         condition3 = rep(c("smallslow", "smallfast", 
+                                           "bigslow", "bigfast"), 100),
+                         condition4 = rep(c("SmallSlow", "SmallFast", 
+                                           "BigSlow", "BigFast"), 100),
+                         response = sample(response.types, 400, replace = TRUE))
+
+head(stringdata)
+summary(stringdata)
+
+x <- c("here", "is", "a", "string", "vector")
+grep("v", x)
+grep("i", x)
+
+grepl("i", x)
+
+# find rows with subject 12
+grep("subject 12", stringdata$ID)
+grep("12", stringdata$ID)
+which(stringdata$ID == "subject 12")
+
+# find all rows where the response was "mild"
+grep("mild", stringdata$response)
+
+# find all rows where condition has "small"
+grep("small", stringdata$condition)
+
+colnames(stringdata)
+
+apply(stringdata, 2, function(x) grep("small", x))
+
+x <- "hi there"
+grepl("hi", x)
+grepl("^hi", x)
+grepl("there", x)
+grepl("^there", x)
+grepl("hi$", x)
+grepl("there$", x)
+
+
+```
+
+### substitutions
+
+```{r}
+
+x <- "hello there"
+gsub("ll", "", x)
+gsub("l", "p", x)
+gsub("e", "something else", x)
+sub("e", "something else", x)
+
+y <- "condition 58"
+gsub("condition ", "", y)
+as.numeric(gsub("condition ", "", y))
+
+z <- c("c 58", "n 47", "o 83", "d 502", "number 3", "my num 42")
+gsub("\\w ", "", z)
+gsub("\\w+ ", "", z)
+sub("\\w+ ", "", z)
+
+# backreferences
+gsub("\\w+ \\d+", "all", z) 
+gsub("\\w+ \\d+", "all", z) 
+gsub("(\\w+ )+\\d+", "all", z) 
+
+gsub("(\\w+ )+(\\d+)", "\\2", z) 
+gsub("(\\w+\\s)+(\\d+)", "\\2", z) 
+
+# return just the first part of the condition variable
+gsub("(\\w+)_(\\w+)", "\\1", stringdata$condition)
+
+# return the ID column without the space
+gsub("(\\w+)\\s(\\d+)", "\\1\\2", stringdata$ID)
+gsub("\\s", "", stringdata$ID)
+
+stringdata2 <- stringdata
+stringdata2$ID <- as.character(stringdata2$ID)
+stringdata2$ID[5:8] <- "s ubject 2"
+
+gsub("(\\w+)\\s(\\d+)", "\\1\\2", stringdata2$ID)
+gsub("\\s", "", stringdata2$ID)
+
+
+```
+
+### strsplit and colsplit
+
+```{r}
+library(reshape2)
+
+x <- c("some string of words", "some other sentence", "yet another one")
+strsplit(x, " ")
+unlist(strsplit(x, " "))
+
+unlist(strsplit(x, "\\w\\s\\w"))
+
+x <- "some text <get rid of this> more text"
+gsub("<(\\w+\\s*)+>\\s*", "", x)
+
+# use strsplit to separate "small_slow"
+x <- "small_slow"
+unlist(strsplit(x, "_"))
+
+# next, use strsplit to separate out two new columns from stringdata$condition column
+x <- "small_slow"
+unlist(strsplit(x, "_"))[1]
+unlist(strsplit(x, "_"))[2]
+
+stringdata$size <- 
+  sapply(as.character(stringdata$condition), function(myarg) { unlist(strsplit(myarg, "_"))[1] })
+
+stringdata$speed <- 
+  sapply(as.character(stringdata$condition), function(x) { unlist(strsplit(x, "_"))[2] })
+
+xtabs(~ size + speed + condition, stringdata) 
+
+# using colsplit for the same thing
+newcolumns <- colsplit(as.character(stringdata$condition), "_", names = c("size2", "speed2"))
+
+stringdata <- cbind(stringdata, newcolumns)
+
+xtabs(~ size2 + speed2 + condition, stringdata) 
+
+# using colsplit for condition2
+newcolumns <- colsplit(as.character(stringdata$condition2), "\\.", names = c("size3", "speed3"))
+
+stringdata <- cbind(stringdata, newcolumns)
+
+xtabs(~ size3 + speed3 + condition, stringdata) 
+
+# using colsplit for condition4
+newcolumns <- colsplit(as.character(stringdata$condition4), "[[:upper:]]", names = c("nothing", "size4", "speed4"))
+
+x <- "abcdef"
+gsub("abcdef", "X", x)
+sub("[abcdef]", "X", x)
+
+# \\w is equivalent to [0-9A-Za-z]
+# [:upper:] is equivalent to A-Z  (on a standard English keyboard locale)
+# [[:upper:]] is equivalent to [A-Z]
+# [_\\.\\s]  will match ONE of underscore, dot, space
+
+stringdata <- cbind(stringdata, newcolumns)
+
+xtabs(~ size4 + speed4 + condition, stringdata) 
+
+# using colsplit for condition3
+x <- "bigfast"
+y <- "smallslow"
+# gsub("()()" ...
+# gsub("((big)|(small)) ...
+# gsub("((big)|(small))((fast)|(slow))" ...
+
+gsub("((big)|(small))((fast)|(slow))", "\\1", x)
+gsub("((big)|(small))((fast)|(slow))", "\\4", x)
+gsub("((big)|(small))((fast)|(slow))", "\\1", y)
+gsub("((big)|(small))((fast)|(slow))", "\\4", y)
+
+stringdata$size5 <- gsub("((big)|(small))((fast)|(slow))", "\\1", stringdata$condition3)
+
+stringdata$speed5 <- gsub("((big)|(small))((fast)|(slow))", "\\4", stringdata$condition3)
+  
+xtabs(~ size5 + speed5 + condition, stringdata) 
+
+x <- c("one", "\\wo", "three")
+gsub("\\\\", "", x)
+
+sometext <- readLines("day11/trialtext.txt")
+
+
+
+```
