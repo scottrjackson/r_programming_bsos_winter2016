@@ -4,6 +4,7 @@ output: html_document
 ---
 
 # Outline
+  - HW 9
   - Debugging
   - Some fun links
   - "Free for all"
@@ -214,6 +215,52 @@ my.pvals.v4(as.matrix(mysleep3), DV = "time.sleep", factor = "condition")
   - strsplit
   - colsplit
 
+# Nicole's problem(s)
+
+```{r}
+library(readxl)
+
+nicole.list <- list()
+for(sheet in 1:9) {
+  nicole.list[[sheet]] <- read_excel("scottdata/Motzer_PSYC798_Dataset.xls", sheet = sheet + 2)
+}
+head(as.data.frame(nicole.list[[2]]))
+
+
+start.data <- nicole.list[[7]][, c("FIPS", "FMRKT13", "FOODHUB12")]
+#start.data$FIPS <- as.numeric(start.data$FIPS)
+
+colnames(nicole.list[[1]])[1] <- "FIPS"
+
+colnames(nicole.list[[5]])
+summary(nicole.list[[5]]$FIPS)
+
+
+sheets_9_7 <- merge(start.data, nicole.list[[5]][, c("FIPS", "PCT_OBESE_CHILD11")], all = TRUE)
+
+nrow(sheets_9_7)
+length(sheets_9_7$FIPS)
+length(unique(sheets_9_7$FIPS))
+
+head(summary(as.factor(sheets_9_7$FIPS)))
+
+sheets_9_7[sheets_9_7$FIPS == "08014", ]
+
+sheets_9_7 <- unique(sheets_9_7)
+
+```
+
+# Jacob's question
+
+```{r}
+
+jacob.example <- data.frame(ID = 1:4, First = c("John", "Mary", "Sue", "Alan"), Last = c("Smith", "Johnson", "Mendes", "Trump"))
+
+jacob.example$First.Last <- apply(jacob.example[, c("First", "Last")], 1, function(x) paste(x[1], x[2], sep = "."))
+
+```
+
+
 ## Regular expressions
 
   - string *matching*
@@ -231,6 +278,7 @@ Some handy characters to know:
   - `\d` = match digits
   - `\s` = match a space character
   - capital-letter versions of the above (`\W`, `\D`, `\S`) are the *negations* of those
+  - `.` = match ANY character
   - `\t` = match a "tab" character
   - `\n` = match a "newline" character
   - `^` = the "beginning edge" of a string
@@ -302,7 +350,7 @@ y <- "condition 58"
 gsub("condition ", "", y)
 as.numeric(gsub("condition ", "", y))
 
-z <- c("c 58", "n 47", "o 83", "d 502", "number 3", "my num 42")
+z <- c("c 58", "n 47", "o 83", "d 502", "number 3", "my num 42", "g 43 ")
 gsub("\\w ", "", z)
 gsub("\\w+ ", "", z)
 sub("\\w+ ", "", z)
@@ -314,6 +362,9 @@ gsub("(\\w+ )+\\d+", "all", z)
 
 gsub("(\\w+ )+(\\d+)", "\\2", z) 
 gsub("(\\w+\\s)+(\\d+)", "\\2", z) 
+
+y <- c("here is number 12 observation")
+gsub("(\\w+\\s+)*(\\d+) (\\w+\\s*)*", "\\2", y)
 
 # return just the first part of the condition variable
 gsub("(\\w+)_(\\w+)", "\\1", stringdata$condition)
@@ -413,9 +464,6 @@ xtabs(~ size5 + speed5 + condition, stringdata)
 
 x <- c("one", "\\wo", "three")
 gsub("\\\\", "", x)
-
-sometext <- readLines("day11/trialtext.txt")
-
 
 
 ```

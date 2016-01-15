@@ -5,7 +5,41 @@ output: html_document
 
 1. Use the `apply()` function to get the mean of several numerical columns, row-wise.  For example, imagine that you have three columns of numbers, and that you want to get the mean value for each row across the columns.  Use `apply()` to get this result and put it into a new column of your data frame.
 
+```{r}
+minpair <- read.csv("scottdata/CognitionPaperFinalData.csv")
+
+head(minpair)
+
+minpair$meanSegFreq <- apply(minpair[, c("HiSegTok", "LoSegTok", "HiSegType", "LoSegType")], 1, mean)
+
+# log(x[1] - x[2])
+
+myfunc <- function(myvector) {
+  myresult <- log(myvector[1] - myvector[2])
+  myresult
+}
+
+minpair$meanLogDiff <- apply(minpair[, c("HiSegType", "LoSegType")], 1, myfunc)
+
+# anonymous version
+minpair$meanLogDiff2 <- apply(minpair[, c("HiSegType", "LoSegType")], 1, function(myvect) { log(myvect[1] - myvect[2]) } )
+
+```
+
 2. Write a small function. It can do something very, very simple.  It needs to have at least one argument.  Describe what you want it to do, write the function, and then use it on a few different cases.
+
+```{r}
+
+myfunc <- function(myvector = NULL) {
+  myresult <- log(myvector[1] - myvector[2])
+  
+  myresult
+}
+
+result1 <- myfunc(c(3, 2))
+
+
+```
 
 3. Go back to the two things you tried to use loops for in Day 8 Homework.  Pick ONE of these things to try to "vectorize."  If you decide that something else would work better, describe some new thing you're trying to do that could be accomplished with a loop. Depending on what you were doing, this may use the `apply()` function, or the combination of `group_by()` and `do()`.  Either of these methods will likely require you to write a function first.  
 
@@ -13,3 +47,108 @@ So first, create a function that will accomplish what you want *one* time.  Then
 
 Note that if you use `do()` and your function returns a data frame, the results will be a data frame.  But if you instead return some other object (like a ggplot object, or a regression object or a t-test object or something like that), then the result will be a list containing those objects.
 
+################################# Kelsey's example
+
+---
+author: Kelsey Canada
+title: "Day 9 Homework"
+output: html_document
+---
+
+1. Use the `apply()` function to get the mean of several numerical columns, row-wise.  For example, imagine that you have three columns of numbers, and that you want to get the mean value for each row across the columns.  Use `apply()` to get this result and put it into a new column of your data frame.
+```{r}
+HMNdata <- read.csv("studentdata/KelseyData.csv", header=T, na.strings = c("NA", "9/9/99", "0:00", "#NULL!"))
+HMNdata$AverageSleep <- apply(HMNdata[, c(9,21, 33, 45, 57, 69, 81, 93, 105, 117)], MARGIN = 1, FUN = mean, na.rm=TRUE)
+colnames(HMNdata)
+summary(HMNdata$AverageSleep)
+```
+2. Write a small function. It can do something very, very simple.  It needs to have at least one argument.  Describe what you want it to do, write the function, and then use it on a few different cases.
+```{r}
+mean.diff<-function(data1, data2){
+  mean1<-mean(data1, na.rm=T)
+  mean2<-mean(data2, na.rm=T)
+  mean3<-mean1-mean2
+  return(mean3)
+}
+mean.diff(cleanhmn$AverageSleep[cleanhmn$AgeGroup == 4], cleanhmn$AverageSleep[cleanhmn$AgeGroup == 5])
+
+mean.diff<-function(data1, data2){
+  mean1<-mean(data1, na.rm=T)
+  mean2<-mean(data2, na.rm=T)
+  mean3<-mean1-mean2
+  return(mean3)
+}
+mean.diff(cleanhmn$AverageSleep[cleanhmn$AgeGroup == 4], cleanhmn$AverageSleep[cleanhmn$AgeGroup == 6])
+
+#This function I want to use to clean and subset the data so I don't have to run lines and lines of code each time
+clean.hmn <- function(HMNdata=HMNdata) {
+  library(reshape2)
+  HMNdata<-data.frame(HMNdata$Subject_ID, HMNdata$ExactAgeCalc, HMNdata$AgeGroup, HMNdata$All_Primacy, HMNdata$Hours_Sleep_LN, HMNdata$Hours_Sleep_1, HMNdata$Hours_Sleep_2, HMNdata$Hours_Sleep_3, HMNdata$Hours_Sleep_4, HMNdata$Hours_Sleep_5, HMNdata$Hours_Sleep_6, HMNdata$Hours_Sleep_7, HMNdata$Hours_Sleep_8, HMNdata$Hours_Sleep_9, HMNdata$Lorsbach_Percent, HMNdata$SM_FactRecallPercent, HMNdata$SM_FactRecogPercent, HMNdata$CMS_Scaled_Imm, HMNdata$CMS_Scaled_Delay, HMNdata$CMS_Scaled_DelRec)
+  newnames<-c("Subject_ID", "ExactAge", "AgeGroup", "PrimacyOverall", "SleepDuration_LN", "SleepDuration_N1", "SleepDuration_N2", "SleepDuration_N3","SleepDuration_N4", "SleepDuration_N5", "SleepDuration_N6", "SleepDuration_N7", "SleepDuration_N8", "SleepDuration_N9", "Lorsbach_Percent", "SourceMem_Recall", "SourceMem_Recog", "Story_Imm", "Story_Delay", "Story_Week" )
+colnames(HMNdata)<-newnames
+ cleaneddata<-(subset( HMNdata[!is.na(HMNdata$SleepDuration_LN),]))
+  cleaneddata<-melt(cleaneddata, measure.vars = c("SleepDuration_LN", "SleepDuration_N1", "SleepDuration_N2","SleepDuration_N3", "SleepDuration_N4", "SleepDuration_N5", "SleepDuration_N6","SleepDuration_N7", "SleepDuration_N8", "SleepDuration_N9"), variable.name = "Night", value.name ="SleepPerNight", na.rm=T) 
+  newlevels<-c("LastNight", "Night1", "Night2", "Night3", "Night4", "Night5", "Night6", "Night7", "Night8", "Night9")
+levels(cleaneddata$Night)<-newlevels
+  cleaneddata$AgeGroup <- as.factor(cleaneddata$AgeGroup)
+ cleaneddata<- dcast(cleaneddata, Subject_ID +   ExactAge + PrimacyOverall + Lorsbach_Percent + SourceMem_Recall+ SourceMem_Recog + Story_Imm +      Story_Delay +   Story_Week  +AgeGroup  ~ ., value.var = "SleepPerNight", fun.aggregate = mean, na.rm = TRUE)
+colnames(cleaneddata)[11]<-"AverageSleep"
+cleaneddata$AverageSleep<-as.numeric(cleaneddata$AverageSleep)
+   cleaneddata
+}
+
+clean.hmn(HMNdata)
+
+cleanhmn<-clean.hmn(HMNdata)
+str(cleanhmn)
+```
+3. Go back to the two things you tried to use loops for in Day 8 Homework.  Pick ONE of these things to try to "vectorize."  If you decide that something else would work better, describe some new thing you're trying to do that could be accomplished with a loop. Depending on what you were doing, this may use the `apply()` function, or the combination of `group_by()` and `do()`.  Either of these methods will likely require you to write a function first.  
+
+So first, create a function that will accomplish what you want *one* time.  Then use one of the "vectorizing" functions to apply your new function in an iterative way.  If you want your function to be applied to each row in your data frame, use `apply()`.  Otherwise, use `group_by()` to specify how to "break up" your date into "chunks", and pass your function to `do()` in order to apply your function to each chunk.
+
+Note that if you use `do()` and your function returns a data frame, the results will be a data frame.  But if you instead return some other object (like a ggplot object, or a regression object or a t-test object or something like that), then the result will be a list containing those objects.
+
+```{r}
+mean.diff<-function(data1, data2){
+  mean1<-mean(data1, na.rm=T)
+  mean2<-mean(data2, na.rm=T)
+  mean3<-mean1-mean2
+  return(mean3)
+}
+mean.diff(cleanhmn$AverageSleep[cleanhmn$AgeGroup == 4], cleanhmn$AverageSleep[cleanhmn$AgeGroup == 5])
+library(dplyr)
+group_by(cleanhmn, Subject_ID, AgeGroup) %>% do(mean.diff(cleanhmn$AverageSleep, cleanhmn$AverageSleep))
+
+#couldn't get to work.
+
+?cor.test
+results.output <- function(data, var1.name, var2.name) {
+  #data<-!is.na(data)
+  #data1<-data$x[data$factor == i]
+  #data1<-as.numeric(data1)
+  #data2<-data$y[data$factor == i]
+  #data2<-as.numeric(data2)
+
+  data.sub <- data[, c(var1.name, var2.name)]
+  data.complete <- data.sub[complete.cases(data.sub), ]
+  var1 <- data.complete[[var1.name]]
+  var2 <- data.complete[[var2.name]]
+  # browser()
+  my.cor.test <- cor.test(var1, var2)
+  mycor <- my.cor.test$estimate
+  myt <- my.cor.test$statistic
+  mydf <- my.cor.test$parameter
+  mypval <- my.cor.test$p.value
+  results <- data.frame(mycor, myt, mydf, mypval)
+  return(results)
+}
+
+results.output(data = cleanhmn, var1.name = "AverageSleep", var2.name = "Lorsbach_Percent")
+
+library(dplyr)
+group_by(cleanhmn, AgeGroup) %>% do(results.output(data = ., var1.name = "AverageSleep", var2.name = "Lorsbach_Percent"))
+
+#results.output(data=cleanhmn, x=AverageSleep, y=Lorsbach_Percentage, factor = AgeGroup, i=4)
+#can't get this to run :( 
+  
+```
